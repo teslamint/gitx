@@ -243,7 +243,7 @@ NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 	NSMutableArray* curRefs;
 	if ( (curRefs = [refs objectForKey:sha]) != nil )
 		[curRefs addObject:ref];
-	else
+	else if (sha)
 		[refs setObject:[NSMutableArray arrayWithObject:ref] forKey:sha];
 }
 
