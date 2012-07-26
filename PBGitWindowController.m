@@ -19,13 +19,9 @@
 
 @synthesize repository;
 
-- (id)initWithRepository:(PBGitRepository*)theRepository displayDefault:(BOOL)displayDefault
-{
-	if (!(self = [self initWithWindowNibName:@"RepositoryWindow"]))
-		return nil;
-
-	self.repository = theRepository;
-
+- (id)initWithRepository:(PBGitRepository*)theRepository displayDefault:(BOOL)displayDefault {
+	self = [self initWithWindowNibName:@"RepositoryWindow"];
+    self.repository = theRepository;
 	return self;
 }
 

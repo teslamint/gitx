@@ -11,7 +11,6 @@
 #import "PBChangedFile.h"
 #import "PBWebChangesController.h"
 #import "PBGitIndex.h"
-#import "PBNiceSplitView.h"
 
 
 #define kCommitSplitViewPositionDefault @"Commit SplitView Position"

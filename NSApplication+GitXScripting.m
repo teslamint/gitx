@@ -24,11 +24,4 @@
 	}
 }
 
-- (void)initRepositoryScriptCommand:(NSScriptCommand *)command
-{
-	NSURL *repositoryURL = [command directParameter];
-	if (repositoryURL)
-		[[PBRepositoryDocumentController sharedDocumentController] initNewRepositoryAtURL:repositoryURL];
-}
-
 @end

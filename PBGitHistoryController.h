@@ -10,7 +10,6 @@
 #import "PBGitCommit.h"
 #import "PBGitTree.h"
 #import "PBViewController.h"
-#import "PBCollapsibleSplitView.h"
 
 @class PBGitSidebarController;
 @class PBWebHistoryController;

@@ -7,12 +7,12 @@
 //
 
 #import "ApplicationController.h"
+#import "PBGitRepository.h"
 #import "PBGitRevisionCell.h"
 #import "PBGitWindowController.h"
 #import "PBRepositoryDocumentController.h"
 #import "PBServicesController.h"
 #import "PBGitXProtocol.h"
-#import "PBPrefsWindowController.h"
 #import "PBNSURLPathUserDefaultsTransfomer.h"
 #import "PBGitDefaults.h"
 
@@ -20,7 +20,7 @@
 
 @implementation ApplicationController
 
-- (ApplicationController *)init {
+- (id)init {
 #ifdef DEBUG_BUILD
 	[NSApp activateIgnoringOtherApps:YES];
 #endif
@@ -59,53 +59,21 @@
 - (void)applicationDidFinishLaunching:(NSNotification*)notification
 {
 	// Make sure Git's SSH password requests get forwarded to our little UI tool:
-	setenv( "SSH_ASKPASS", [[[NSBundle mainBundle] pathForResource: @"gitx_askpasswd" ofType: @""] UTF8String], 1 );
+	setenv( "SSH_ASKPASS", [[[NSBundle mainBundle] pathForResource:@"gitx_askpasswd" ofType:@""] UTF8String], 1 );
 	setenv( "DISPLAY", "localhost:0", 1 );
 
 	[self registerServices];
 
-    BOOL hasOpenedDocuments = NO;
-    NSArray *launchedDocuments = [[[PBRepositoryDocumentController sharedDocumentController] documents] copy];
-
-	// Only try to open a default document if there are no documents open already.
-	// For example, the application might have been launched by double-clicking a .git repository,
-	// or by dragging a folder to the app icon
-	if ([launchedDocuments count])
-		hasOpenedDocuments = YES;
-
-	// Try to find the current directory, to open that as a repository
-	if ([PBGitDefaults openCurDirOnLaunch] && !hasOpenedDocuments) {
-		NSString *curPath = [[[NSProcessInfo processInfo] environment] objectForKey:@"PWD"];
-        NSURL *url = nil;
-		if (curPath)
-			url = [NSURL fileURLWithPath:curPath];
-        // Try to open the found URL
-        NSError *error = nil;
-        if (url && [[PBRepositoryDocumentController sharedDocumentController] openDocumentWithContentsOfURL:url display:YES error:&error])
-            hasOpenedDocuments = YES;
-	}
+    NSArray *launchedDocuments = [[PBRepositoryDocumentController sharedDocumentController] documents];
 
     // to bring the launched documents to the front
     for (PBGitRepository *document in launchedDocuments)
         [document showWindows];
-
-	if (![[NSApplication sharedApplication] isActive])
-		return;
-
-	// The current directory was not enabled or could not be opened (most likely it’s not a git repository).
-	// show an open panel for the user to select a repository to view
-	if ([PBGitDefaults showOpenPanelOnLaunch] && !hasOpenedDocuments)
-		[[PBRepositoryDocumentController sharedDocumentController] openDocument:self];
 }
 
 - (void)windowWillClose:sender
 {
 	[firstResponder terminate:sender];
-}
-
-- (IBAction)openPreferencesWindow:(id)sender
-{
-	[[PBPrefsWindowController sharedPrefsWindowController] showWindow:nil];
 }
 
 - (IBAction)showAboutPanel:(id)sender
@@ -122,144 +90,87 @@
 	[NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
 
-- (IBAction)installCliTool:(id)sender;
-{
-	BOOL success               = NO;
-	NSString* installationPath = @"/usr/local/bin/";
-	NSString* installationName = @"gitx";
-	NSString* toolPath         = [[NSBundle mainBundle] pathForResource:@"gitx" ofType:@""];
-	if (toolPath) {
-		AuthorizationRef auth;
-		if (AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &auth) == errAuthorizationSuccess) {
-			char const* mkdir_arg[] = { "-p", [installationPath UTF8String], NULL};
-			char const* mkdir	= "/bin/mkdir";
-			AuthorizationExecuteWithPrivileges(auth, mkdir, kAuthorizationFlagDefaults, (char**)mkdir_arg, NULL);
-			char const* arguments[] = { "-f", "-s", [toolPath UTF8String], [[installationPath stringByAppendingString: installationName] UTF8String],  NULL };
-			char const* helperTool  = "/bin/ln";
-			if (AuthorizationExecuteWithPrivileges(auth, helperTool, kAuthorizationFlagDefaults, (char**)arguments, NULL) == errAuthorizationSuccess) {
-				int status;
-				int pid = wait(&status);
-				if (pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == 0)
-					success = true;
-				else
-					errno = WEXITSTATUS(status);
-			}
+- (BOOL)needsRoot {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    
+    if ([fm fileExistsAtPath:@"/usr/local/bin/gitx"] && ![fm isWritableFileAtPath:@"/usr/local/bin/gitx"])
+        return YES;
+    
+    if ([fm isWritableFileAtPath:@"/usr/local/bin"]) {
+        BOOL isdir;
+        if (![fm fileExistsAtPath:@"/usr/local/bin" isDirectory:&isdir] && !isdir)
+            @throw @"/usr/local/bin is not a directory.";
+        return NO;
+    }
+    if ([fm isWritableFileAtPath:@"/usr/local"]) {
+        BOOL isdir;
+        if (![fm fileExistsAtPath:@"/usr/local" isDirectory:&isdir] && !isdir)
+            @throw @"/usr/local is not a directory.";
+        return NO;
+    }
+    
+    return YES;
+}
 
-			AuthorizationFree(auth, kAuthorizationFlagDefaults);
-		}
-	}
+- (IBAction)installCliTool:(id)sender {
+    id from = [[NSBundle mainBundle] pathForResource:@"gitx" ofType:@""];
+    id to = @"/usr/local/bin/gitx";
+    
+    @try {
+        if (self.needsRoot) {
+            AuthorizationRef auth;
+            if (AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &auth) == errAuthorizationSuccess)
+            {
+                char const* mkdir_arg[] = { "-p", [[to stringByDeletingLastPathComponent] UTF8String], NULL};
+                AuthorizationExecuteWithPrivileges(auth, "/bin/mkdir", kAuthorizationFlagDefaults, (char**)mkdir_arg, NULL);
 
-	if (success) {
-		[[NSAlert alertWithMessageText:@"Installation Complete"
-	                    defaultButton:nil
-	                  alternateButton:nil
-	                      otherButton:nil
-	        informativeTextWithFormat:@"The gitx tool has been installed to %@", installationPath] runModal];
-	} else {
-		[[NSAlert alertWithMessageText:@"Installation Failed"
-	                    defaultButton:nil
-	                  alternateButton:nil
-	                      otherButton:nil
-	        informativeTextWithFormat:@"Installation to %@ failed", installationPath] runModal];
-	}
+                char const* arguments[] = { "-f", "-s", [from UTF8String], [to UTF8String],  NULL };
+                if (AuthorizationExecuteWithPrivileges(auth, "/bin/ln", kAuthorizationFlagDefaults, (char**)arguments, NULL) == errAuthorizationSuccess) {
+                    int status;
+                    int pid = wait(&status);
+                    if (!(pid != -1 && WIFEXITED(status) && WEXITSTATUS(status) == 0))
+                        @throw @"Could not create gitx symlink :(";
+                } else
+                    @throw @"You canceled authorisation.";
+
+                AuthorizationFree(auth, kAuthorizationFlagDefaults);
+            }
+        } else {
+            //FIXME this is a hard link, root-route is symlink, should be same, hard links are better IMO
+            
+            [[NSFileManager defaultManager] removeItemAtPath:to error:nil];
+            
+            id error = nil;
+            [[NSFileManager defaultManager] linkItemAtPath:from toPath:to error:&error];
+            if (error)
+                @throw error;
+        }
+
+        [[NSAlert alertWithMessageText:@"Command Line Tool Installed Successfully"
+                         defaultButton:nil
+                       alternateButton:nil
+                           otherButton:nil
+             informativeTextWithFormat:@"You now have: %@.", to] runModal];
+    }
+    @catch (id errmsg) {
+        if ([errmsg isKindOfClass:[NSError class]])
+            errmsg = [errmsg localizedFailureReason];
+        
+		[[NSAlert alertWithMessageText:@"Could Not Install Command Line Tool"
+                         defaultButton:nil
+                       alternateButton:nil
+                           otherButton:nil
+             informativeTextWithFormat:@"%@", errmsg] runModal];
+    }
 }
 
 - (NSString *)applicationSupportFolder {
-
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:@"GitTest"];
 }
 
-- (NSManagedObjectModel *)managedObjectModel {
-    return managedObjectModel ?: (managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil]);
-}
-
-- (NSPersistentStoreCoordinator *) persistentStoreCoordinator {
-    if (!persistentStoreCoordinator) {
-        NSFileManager *fileManager;
-        NSString *applicationSupportFolder = nil;
-        NSURL *url;
-        NSError *error;
-        
-        fileManager = [NSFileManager defaultManager];
-        applicationSupportFolder = [self applicationSupportFolder];
-        if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-            [fileManager createDirectoryAtPath:applicationSupportFolder withIntermediateDirectories:YES attributes:nil error:nil];
-        }
-        
-        url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"GitTest.xml"]];
-        persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-        if (![persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error]){
-            [[NSApplication sharedApplication] presentError:error];
-        }
-    }
-
-    return persistentStoreCoordinator;
-}
-
-- (NSManagedObjectContext *) managedObjectContext {
-    if (!managedObjectContext) {
-        managedObjectContext = [NSManagedObjectContext new];
-        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
-    }
-    return managedObjectContext;
-}
-
-- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
-    return self.managedObjectContext.undoManager;
-}
- 
-- (IBAction) saveAction:(id)sender {
-    id error = nil;
-    if (![[self managedObjectContext] save:&error]) {
-        [NSApp presentError:error];
-    }
-}
-
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    NSError *error;
-    int reply = NSTerminateNow;
-    
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext commitEditing]) {
-            if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-				
-                // This error handling simply presents error information in a panel with an 
-                // "Ok" button, which does not include any attempt at error recovery (meaning, 
-                // attempting to fix the error.)  As a result, this implementation will 
-                // present the information to the user and then follow up with a panel asking 
-                // if the user wishes to "Quit Anyway", without saving the changes.
-
-                // Typically, this process should be altered to include application-specific 
-                // recovery steps.  
-
-                BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
-				
-                if (errorResult == YES) {
-                    reply = NSTerminateCancel;
-                } 
-
-                else {
-					
-                    int alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
-                    if (alertReturn == NSAlertAlternateReturn) {
-                        reply = NSTerminateCancel;	
-                    }
-                }
-            }
-        } 
-        
-        else {
-            reply = NSTerminateCancel;
-        }
-    }
-    
-    return reply;
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification
-{
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
 	[PBGitDefaults removePreviousDocumentPaths];
 
 	if ([PBGitDefaults openPreviousDocumentsOnLaunch]) {
@@ -274,29 +185,12 @@
 	}
 }
 
-/**
-    Implementation of dealloc, to release the retained variables.
- */
- 
-- (void) dealloc {
-
-    managedObjectContext = nil;
-    persistentStoreCoordinator = nil;
-    managedObjectModel = nil;
-}
-
-#pragma mark Help menu
-
-- (IBAction)showHelp:(id)sender
-{
+- (IBAction)showHelp:(id)sender {
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://gitx.frim.nl/user_manual.html"]];
 }
 
-- (IBAction)reportAProblem:(id)sender
-{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://gitx.lighthouseapp.com/tickets"]];
+- (IBAction)reportAProblem:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:mxcl@me.com"]];
 }
-
-
 
 @end

@@ -15,15 +15,12 @@
 @synthesize status;
 @synthesize isBusy;
 
-- (id)initWithRepository:(PBGitRepository *)theRepository superController:(PBGitWindowController *)controller
-{
-	NSString *nibName = [[[self class] description] stringByReplacingOccurrencesOfString:@"Controller"
-																			  withString:@"View"];
-	if(self = [self initWithNibName:nibName bundle:nil]) {
+- (id)initWithRepository:(PBGitRepository *)theRepository superController:(PBGitWindowController *)controller {
+	NSString *nib = [[[self class] description] stringByReplacingOccurrencesOfString:@"Controller" withString:@"View"];
+	if (self = [self initWithNibName:nib bundle:nil]) {
 		repository = theRepository;
 		superController = controller;
 	}
-	
 	return self;
 }
 

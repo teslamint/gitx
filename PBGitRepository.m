@@ -23,8 +23,9 @@
 
 NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 
-@implementation PBGitRepository
 
+
+@implementation PBGitRepository
 @synthesize revisionList, branches, currentBranch, refs, hasChanged, config;
 @synthesize currentBranchFilter;
 
