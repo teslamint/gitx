@@ -15,7 +15,6 @@
 #import "PBPrefsWindowController.h"
 #import "PBNSURLPathUserDefaultsTransfomer.h"
 #import "PBGitDefaults.h"
-#import "PBCloneRepositoryPanel.h"
 
 @implementation ApplicationController
 
@@ -126,14 +125,6 @@
 	[NSApp orderFrontStandardAboutPanelWithOptions:dict];
 }
 
-- (IBAction) showCloneRepository:(id)sender
-{
-	if (!cloneRepositoryPanel)
-		cloneRepositoryPanel = [PBCloneRepositoryPanel panel];
-
-	[cloneRepositoryPanel showWindow:self];
-}
-
 - (IBAction)installCliTool:(id)sender;
 {
 	BOOL success               = NO;
@@ -228,7 +219,7 @@
     fileManager = [NSFileManager defaultManager];
     applicationSupportFolder = [self applicationSupportFolder];
     if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
+        [fileManager createDirectoryAtPath:applicationSupportFolder withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
     url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"GitTest.xml"]];

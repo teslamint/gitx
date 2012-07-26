@@ -88,23 +88,18 @@ static NSString* gitPath = nil;
 	return gitPath;
 }
 
-static NSMutableArray *locations = nil;
-
-+ (NSArray *) searchLocations
++ (NSArray *)searchLocations
 {
-	if (locations)
-		return locations;
-
-	locations = [NSMutableArray arrayWithObjects:@"/opt/local/bin/git",
-						  @"/sw/bin/git",
-						  @"/opt/git/bin/git",
-						  @"/usr/local/bin/git",
-						  @"/usr/local/git/bin/git",
-                          @"/Applications/Xcode.app/Contents/Developer/usr/bin",
-						  nil];
-
-	[locations addObject:[@"~/bin/git" stringByExpandingTildeInPath]];
-	return locations;
+	return @[
+        @"/usr/bin/git",
+        @"/Applications/Xcode.app/Contents/Developer/usr/bin/git",
+        @"/usr/local/bin/git",
+        @"/opt/local/bin/git",
+        @"/sw/bin/git",
+        @"/opt/git/bin/git",
+        @"/usr/local/git/bin/git",
+        [@"~/bin/git" stringByExpandingTildeInPath]
+    ];
 }
 
 + (NSString *) notFoundError

@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "PBGitRepository.h"
 
-@class PBCloneRepositoryPanel;
-
 @interface ApplicationController : NSObject
 {
 	IBOutlet NSWindow *window;
@@ -18,8 +16,6 @@
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
-
-	PBCloneRepositoryPanel *cloneRepositoryPanel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
@@ -35,5 +31,4 @@
 - (IBAction)showHelp:(id)sender;
 - (IBAction)reportAProblem:(id)sender;
 
-- (IBAction)showCloneRepository:(id)sender;
 @end

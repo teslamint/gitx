@@ -42,11 +42,12 @@
 	if (![cell isHighlighted])
 		return [NSColor whiteColor];
 
-	if (![[[cell controlView] window] isKeyWindow])
+	if (![[[cell controlView] window] isKeyWindow]) {
 		if ([[[cell controlView] window] isMainWindow])
 			return [self badgeHighlightColor];
-		else 
+		else
 			return [self badgeBackgroundColor];
+    }
 
 	if ([[[cell controlView] window] firstResponder] == [cell controlView])
 		return [self badgeHighlightColor];
@@ -115,7 +116,7 @@
 
 + (NSImage *) numericBadge:(NSInteger)number forCell:(NSTextFieldCell *)cell
 {
-	return [self badge:[NSString stringWithFormat:@"%d", number] forCell:cell];
+	return [self badge:[NSString stringWithFormat:@"%ld", number] forCell:cell];
 }
 
 @end

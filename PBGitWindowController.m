@@ -10,7 +10,6 @@
 #import "PBGitHistoryController.h"
 #import "PBGitCommitController.h"
 #import "Terminal.h"
-#import "PBCloneRepsitoryToSheet.h"
 #import "PBCommitHookFailedSheet.h"
 #import "PBGitXMessageSheet.h"
 #import "PBGitSidebarController.h"
@@ -159,11 +158,6 @@
 	[term activate];
 }
 
-- (IBAction) cloneTo:(id)sender
-{
-	[PBCloneRepsitoryToSheet beginCloneRepsitoryToSheetForRepository:repository];
-}
-
 - (IBAction) refresh:(id)sender
 {
 	[contentController refresh:self];
@@ -191,9 +185,9 @@
 	}
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-    if ([(NSString *)context isEqualToString:@"statusChange"]) {
+    if ([context isEqualToString:@"statusChange"]) {
 		[self updateStatus];
 		return;
 	}

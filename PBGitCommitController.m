@@ -171,8 +171,8 @@
 {
 	[commitMessageView setEditable:YES];
 	[commitMessageView setString:@""];
-	[webController setStateMessage:[NSString stringWithFormat:[[notification userInfo] objectForKey:@"description"]]];
-}	
+	[webController setStateMessage:[NSString stringWithFormat:@"%@", [[notification userInfo] objectForKey:@"description"]]];
+}
 
 - (void)commitFailed:(NSNotification *)notification
 {

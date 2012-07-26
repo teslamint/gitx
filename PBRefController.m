@@ -9,8 +9,6 @@
 #import "PBRefController.h"
 #import "PBGitRevisionCell.h"
 #import "PBRefMenuItem.h"
-#import "PBCreateBranchSheet.h"
-#import "PBCreateTagSheet.h"
 #import "PBGitDefaults.h"
 #import "PBDiffWindowController.h"
 
@@ -168,15 +166,6 @@
 }
 
 
-#pragma mark Create Branch
-
-- (void) createBranch:(PBRefMenuItem *)sender
-{
-	id <PBGitRefish> refish = [sender refish];
-	[PBCreateBranchSheet beginCreateBranchSheetAtRefish:refish inRepository:historyController.repository];
-}
-
-
 #pragma mark Copy info
 
 - (void) copySHA:(PBRefMenuItem *)sender
@@ -220,12 +209,6 @@
 }
 
 #pragma mark Tags
-
-- (void) createTag:(PBRefMenuItem *)sender
-{
-	id <PBGitRefish> refish = [sender refish];
-	[PBCreateTagSheet beginCreateTagSheetAtRefish:refish inRepository:historyController.repository];
-}
 
 - (void) showTagInfoSheet:(PBRefMenuItem *)sender
 {
@@ -420,7 +403,7 @@
 									 defaultButton:@"Move"
 								   alternateButton:@"Cancel"
 									   otherButton:nil
-						 informativeTextWithFormat:infoText];
+						 informativeTextWithFormat:@"%@", infoText];
     [alert setShowsSuppressionButton:YES];
 
 	[alert beginSheetModalForWindow:[historyController.repository.windowController window]

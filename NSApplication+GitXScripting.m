@@ -10,7 +10,6 @@
 #import "GitXScriptingConstants.h"
 #import "PBDiffWindowController.h"
 #import "PBRepositoryDocumentController.h"
-#import "PBCloneRepositoryPanel.h"
 
 
 @implementation NSApplication (GitXScripting)
@@ -30,20 +29,6 @@
 	NSURL *repositoryURL = [command directParameter];
 	if (repositoryURL)
 		[[PBRepositoryDocumentController sharedDocumentController] initNewRepositoryAtURL:repositoryURL];
-}
-
-- (void)cloneRepositoryScriptCommand:(NSScriptCommand *)command
-{
-	NSString *repository = [command directParameter];
-	if (repository) {
-		NSDictionary *arguments = [command arguments];
-		NSURL *destinationURL = [arguments objectForKey:kGitXCloneDestinationURLKey];
-		if (destinationURL) {
-			BOOL isBare = [[arguments objectForKey:kGitXCloneIsBareKey] boolValue];
-
-			[PBCloneRepositoryPanel beginCloneRepository:repository toURL:destinationURL isBare:isBare];
-		}
-	}
 }
 
 @end

@@ -34,11 +34,9 @@
 - (void) merge:(PBRefMenuItem *)sender;
 - (void) cherryPick:(PBRefMenuItem *)sender;
 - (void) rebaseHeadBranch:(PBRefMenuItem *)sender;
-- (void) createBranch:(PBRefMenuItem *)sender;
 - (void) copySHA:(PBRefMenuItem *)sender;
 - (void) copyPatch:(PBRefMenuItem *)sender;
 - (void) diffWithHEAD:(PBRefMenuItem *)sender;
-- (void) createTag:(PBRefMenuItem *)sender;
 - (void) showTagInfoSheet:(PBRefMenuItem *)sender;
 
 - (NSArray *) menuItemsForRef:(PBGitRef *)ref;

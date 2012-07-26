@@ -11,7 +11,7 @@
 
 @class PBViewController, PBGitSidebarController, PBGitCommitController;
 
-@interface PBGitWindowController : NSWindowController {
+@interface PBGitWindowController : NSWindowController <NSWindowDelegate> {
 	__weak PBGitRepository* repository;
 
 	PBViewController *contentController;
@@ -46,7 +46,6 @@
 - (IBAction) showHistoryView:(id)sender;
 - (IBAction) revealInFinder:(id)sender;
 - (IBAction) openInTerminal:(id)sender;
-- (IBAction) cloneTo:(id)sender;
 - (IBAction) refresh:(id)sender;
 
 - (void)setHistorySearch:(NSString *)searchString mode:(NSInteger)mode;

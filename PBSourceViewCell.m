@@ -24,7 +24,7 @@
 	NSPoint point = [view convertPoint:[event locationInWindow] fromView:nil];
 	NSInteger row = [view rowAtPoint:point];
 
-	PBGitSidebarController *controller = [view delegate];
+	PBGitSidebarController *controller = (id)[view delegate];
 
 	return [controller menuForRow:row];
 }

@@ -12,9 +12,6 @@
 #import "PBGitGrapher.h"
 #import "PBGitRevisionCell.h"
 #import "PBCommitList.h"
-#import "PBCreateBranchSheet.h"
-#import "PBCreateTagSheet.h"
-#import "PBAddRemoteSheet.h"
 #import "PBGitSidebarController.h"
 #import "PBGitGradientBarView.h"
 #import "PBDiffWindowController.h"
@@ -177,7 +174,7 @@
 - (void) updateStatus
 {
 	self.isBusy = repository.revisionList.isUpdating;
-	self.status = [NSString stringWithFormat:@"%d commits loaded", [[commitController arrangedObjects] count]];
+	self.status = [NSString stringWithFormat:@"%ld commits loaded", [[commitController arrangedObjects] count]];
 }
 
 - (void) restoreFileBrowserSelection
@@ -276,7 +273,7 @@
 		return;
 	PBGitTree* tree = [selectedFiles objectAtIndex:0];
 	NSString* name = [tree tmpFileNameForContents];
-	[[NSWorkspace sharedWorkspace] openTempFile:name];
+	[[NSWorkspace sharedWorkspace] openFile:name];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -643,29 +640,6 @@
 
 
 #pragma mark Repository Methods
-
-- (IBAction) createBranch:(id)sender
-{
-	PBGitRef *currentRef = [repository.currentBranch ref];
-
-	if (!selectedCommit || [selectedCommit hasRef:currentRef])
-		[PBCreateBranchSheet beginCreateBranchSheetAtRefish:currentRef inRepository:self.repository];
-	else
-		[PBCreateBranchSheet beginCreateBranchSheetAtRefish:selectedCommit inRepository:self.repository];
-}
-
-- (IBAction) createTag:(id)sender
-{
-	if (!selectedCommit)
-		[PBCreateTagSheet beginCreateTagSheetAtRefish:[repository.currentBranch ref] inRepository:repository];
-	else
-		[PBCreateTagSheet beginCreateTagSheetAtRefish:selectedCommit inRepository:repository];
-}
-
-- (IBAction) showAddRemoteSheet:(id)sender
-{
-	[PBAddRemoteSheet beginAddRemoteSheetForRepository:self.repository];
-}
 
 - (IBAction) merge:(id)sender
 {

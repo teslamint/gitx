@@ -13,11 +13,10 @@
 #import "PBRefController.h"
 #import "PBSourceViewCell.h"
 #import "NSOutlineViewExt.h"
-#import "PBAddRemoteSheet.h"
 #import "PBGitDefaults.h"
 #import "PBHistorySearchController.h"
 
-@interface PBGitSidebarController ()
+@interface PBGitSidebarController () <NSOutlineViewDelegate>
 
 - (void)populateList;
 - (void)addRevSpec:(PBGitRevSpecifier *)revSpec;
@@ -371,11 +370,6 @@ enum  {
 - (IBAction) fetchPullPushAction:(id)sender
 {
 	NSInteger selectedSegment = [sender selectedSegment];
-
-	if (selectedSegment == kAddRemoteSegment) {
-		[PBAddRemoteSheet beginAddRemoteSheetForRepository:repository];
-		return;
-	}
 
 	NSInteger index = [sourceView selectedRow];
 	PBSourceViewItem *item = [sourceView itemAtRow:index];

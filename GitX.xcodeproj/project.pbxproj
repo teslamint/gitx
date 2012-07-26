@@ -25,6 +25,7 @@
 		47DBDBCA0E95016F00671A1E /* PBNSURLPathUserDefaultsTransfomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DBDBC90E95016F00671A1E /* PBNSURLPathUserDefaultsTransfomer.m */; };
 		551BF11E112F376C00265053 /* gitx_askpasswd_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 551BF11D112F376C00265053 /* gitx_askpasswd_main.m */; };
 		551BF176112F3F4B00265053 /* gitx_askpasswd in Resources */ = {isa = PBXBuildFile; fileRef = 551BF111112F371800265053 /* gitx_askpasswd */; };
+		6308530315C17697002BF9A2 /* html in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5D619ED0EAE62EA00341D73 /* html */; };
 		6387450D15C083EE00F12271 /* commit.c in Sources */ = {isa = PBXBuildFile; fileRef = 638744F115C083EE00F12271 /* commit.c */; };
 		6387450E15C083EE00F12271 /* errors.c in Sources */ = {isa = PBXBuildFile; fileRef = 638744F415C083EE00F12271 /* errors.c */; };
 		6387450F15C083EE00F12271 /* config.h.in in Resources */ = {isa = PBXBuildFile; fileRef = 638744FA15C083EE00F12271 /* config.h.in */; };
@@ -35,7 +36,6 @@
 		639FF8A9151530570090359C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E3B2B710DC9FB2001096A3 /* ScriptingBridge.framework */; };
 		639FF8AA151530740090359C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E3B2B710DC9FB2001096A3 /* ScriptingBridge.framework */; };
 		639FF8AC151530F70090359C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639FF8AB151530F70090359C /* QuartzCore.framework */; };
-		63D64A5615151DB300D9571D /* PBGitSidebarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58DB55F10566E3900CFDF4A /* PBGitSidebarView.xib */; };
 		770B37ED0679A11B001EADE2 /* GitTest_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 770B37EC0679A11B001EADE2 /* GitTest_DataModel.xcdatamodel */; };
 		77C8280E06725ACE000B614F /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C8280C06725ACE000B614F /* ApplicationController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -53,11 +53,6 @@
 		D8022FE811E124A0003C21F6 /* PBGitXMessageSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8022FE711E124A0003C21F6 /* PBGitXMessageSheet.xib */; };
 		D8022FED11E124C8003C21F6 /* PBGitXMessageSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D8022FEC11E124C8003C21F6 /* PBGitXMessageSheet.m */; };
 		D8083A43111E045D00337480 /* PBRemoteProgressSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D8083A42111E045D00337480 /* PBRemoteProgressSheet.m */; };
-		D8083C44111F106800337480 /* PBAddRemoteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D8083C43111F106800337480 /* PBAddRemoteSheet.m */; };
-		D8083C47111F136400337480 /* PBAddRemoteSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8083C45111F136400337480 /* PBAddRemoteSheet.xib */; };
-		D8083DC4111F90F300337480 /* PBCloneRepsitoryToSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D8083DC3111F90F300337480 /* PBCloneRepsitoryToSheet.m */; };
-		D8083DCD111F918900337480 /* PBCloneRepsitoryToSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8083DCB111F918900337480 /* PBCloneRepsitoryToSheet.xib */; };
-		D8083E03111FA33700337480 /* PBCloneRepositoryPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8083E02111FA33700337480 /* PBCloneRepositoryPanel.m */; };
 		D828A40D1127B18700F09D11 /* PBSourceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D828A40C1127B18700F09D11 /* PBSourceViewCell.m */; };
 		D828A4111127B1C400F09D11 /* PBSourceViewBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D828A4101127B1C400F09D11 /* PBSourceViewBadge.m */; };
 		D828A5F21128AE7200F09D11 /* FetchTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D828A5EF1128AE7200F09D11 /* FetchTemplate.png */; };
@@ -67,27 +62,22 @@
 		D8295D2A1130A1DC00C838E8 /* PBGitHistoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = D8295D291130A1DC00C838E8 /* PBGitHistoryList.m */; };
 		D8295DE01130E43900C838E8 /* PBGitHistoryGrapher.m in Sources */ = {isa = PBXBuildFile; fileRef = D8295DDF1130E43900C838E8 /* PBGitHistoryGrapher.m */; };
 		D8357535112640F100DE249D /* PBRemoteProgressSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C1B77110E875CF009B7F8B /* PBRemoteProgressSheet.xib */; };
-		D854948610D5C01B0083B917 /* PBCreateBranchSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D854948510D5C01B0083B917 /* PBCreateBranchSheet.m */; };
 		D85810551127476E007F254B /* StageView.png in Resources */ = {isa = PBXBuildFile; fileRef = D85810541127476E007F254B /* StageView.png */; };
 		D858108311274D28007F254B /* Branch.png in Resources */ = {isa = PBXBuildFile; fileRef = D858108011274D28007F254B /* Branch.png */; };
 		D858108411274D28007F254B /* RemoteBranch.png in Resources */ = {isa = PBXBuildFile; fileRef = D858108111274D28007F254B /* RemoteBranch.png */; };
 		D858108511274D28007F254B /* Tag.png in Resources */ = {isa = PBXBuildFile; fileRef = D858108211274D28007F254B /* Tag.png */; };
-		D85B939310E3D8B4007F3C28 /* PBCreateBranchSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D85B939210E3D8B4007F3C28 /* PBCreateBranchSheet.xib */; };
 		D8712A00122B14EC00012334 /* GitXTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D87129FF122B14EC00012334 /* GitXTextFieldCell.m */; };
-		D889EB3110E6BCBB00F08413 /* PBCreateTagSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D889EB3010E6BCBB00F08413 /* PBCreateTagSheet.xib */; };
 		D8A4BB6F11337D5C00E92D51 /* PBGitGradientBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A4BB6E11337D5C00E92D51 /* PBGitGradientBarView.m */; };
 		D8A4BD071134AD2900E92D51 /* CherryPickTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A4BD041134AD2900E92D51 /* CherryPickTemplate.png */; };
 		D8A4BD081134AD2900E92D51 /* MergeTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A4BD051134AD2900E92D51 /* MergeTemplate.png */; };
 		D8A4BD091134AD2900E92D51 /* RebaseTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A4BD061134AD2900E92D51 /* RebaseTemplate.png */; };
 		D8B4DC571220D1E4004166D6 /* PBHistorySearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B4DC561220D1E4004166D6 /* PBHistorySearchController.m */; };
 		D8E105471157C18200FC28A4 /* PBQLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E105461157C18200FC28A4 /* PBQLTextView.m */; };
-		D8E3B34D10DCA958001096A3 /* PBCreateTagSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E3B34C10DCA958001096A3 /* PBCreateTagSheet.m */; };
 		D8EB616A122F643E00FCCAF4 /* GitXRelativeDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EB6169122F643E00FCCAF4 /* GitXRelativeDateFormatter.m */; };
 		D8F01C4B12182F19007F729F /* GitX.sdef in Resources */ = {isa = PBXBuildFile; fileRef = D8F01C4A12182F19007F729F /* GitX.sdef */; };
 		D8F01D531218A164007F729F /* NSApplication+GitXScripting.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F01D521218A164007F729F /* NSApplication+GitXScripting.m */; };
 		D8F4AB7912298CE200D6D53C /* rewindImage.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8F4AB7812298CE200D6D53C /* rewindImage.pdf */; };
 		D8FBCF19115FA20C0098676A /* PBGitSHA.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FBCF18115FA20C0098676A /* PBGitSHA.m */; };
-		D8FDD9F711432A12005647F6 /* PBCloneRepositoryPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FDD9F511432A12005647F6 /* PBCloneRepositoryPanel.xib */; };
 		D8FDDA6A114335E8005647F6 /* PBGitSVBranchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FDDA5D114335E8005647F6 /* PBGitSVBranchItem.m */; };
 		D8FDDA6B114335E8005647F6 /* PBGitSVFolderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FDDA5F114335E8005647F6 /* PBGitSVFolderItem.m */; };
 		D8FDDA6C114335E8005647F6 /* PBGitSVOtherRevItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FDDA61114335E8005647F6 /* PBGitSVOtherRevItem.m */; };
@@ -178,8 +168,9 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 7;
 			files = (
+				6308530315C17697002BF9A2 /* html in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,14 +262,6 @@
 		D8022FEC11E124C8003C21F6 /* PBGitXMessageSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitXMessageSheet.m; sourceTree = "<group>"; };
 		D8083A2D111E045300337480 /* PBRemoteProgressSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRemoteProgressSheet.h; sourceTree = "<group>"; };
 		D8083A42111E045D00337480 /* PBRemoteProgressSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRemoteProgressSheet.m; sourceTree = "<group>"; };
-		D8083C42111F106800337480 /* PBAddRemoteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAddRemoteSheet.h; sourceTree = "<group>"; };
-		D8083C43111F106800337480 /* PBAddRemoteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAddRemoteSheet.m; sourceTree = "<group>"; };
-		D8083C46111F136400337480 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PBAddRemoteSheet.xib; sourceTree = "<group>"; };
-		D8083DC2111F90F300337480 /* PBCloneRepsitoryToSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCloneRepsitoryToSheet.h; sourceTree = "<group>"; };
-		D8083DC3111F90F300337480 /* PBCloneRepsitoryToSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCloneRepsitoryToSheet.m; sourceTree = "<group>"; };
-		D8083DCC111F918900337480 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PBCloneRepsitoryToSheet.xib; sourceTree = "<group>"; };
-		D8083E01111FA33700337480 /* PBCloneRepositoryPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCloneRepositoryPanel.h; sourceTree = "<group>"; };
-		D8083E02111FA33700337480 /* PBCloneRepositoryPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCloneRepositoryPanel.m; sourceTree = "<group>"; };
 		D823487410CB382C00944BDE /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		D828A40B1127B18700F09D11 /* PBSourceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBSourceViewCell.h; sourceTree = "<group>"; };
 		D828A40C1127B18700F09D11 /* PBSourceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBSourceViewCell.m; sourceTree = "<group>"; };
@@ -292,9 +275,6 @@
 		D8295D291130A1DC00C838E8 /* PBGitHistoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitHistoryList.m; sourceTree = "<group>"; };
 		D8295DDE1130E43900C838E8 /* PBGitHistoryGrapher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGitHistoryGrapher.h; sourceTree = "<group>"; };
 		D8295DDF1130E43900C838E8 /* PBGitHistoryGrapher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitHistoryGrapher.m; sourceTree = "<group>"; };
-		D854948410D5C01B0083B917 /* PBCreateBranchSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCreateBranchSheet.h; sourceTree = "<group>"; };
-		D854948510D5C01B0083B917 /* PBCreateBranchSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCreateBranchSheet.m; sourceTree = "<group>"; };
-		D854949310D5C3E20083B917 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PBCreateBranchSheet.xib; sourceTree = "<group>"; };
 		D85810541127476E007F254B /* StageView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StageView.png; path = Images/StageView.png; sourceTree = "<group>"; };
 		D858108011274D28007F254B /* Branch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Branch.png; path = Images/Branch.png; sourceTree = "<group>"; };
 		D858108111274D28007F254B /* RemoteBranch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RemoteBranch.png; path = Images/RemoteBranch.png; sourceTree = "<group>"; };
@@ -314,9 +294,6 @@
 		D8E105451157C18200FC28A4 /* PBQLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBQLTextView.h; sourceTree = "<group>"; };
 		D8E105461157C18200FC28A4 /* PBQLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBQLTextView.m; sourceTree = "<group>"; };
 		D8E3B2B710DC9FB2001096A3 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
-		D8E3B34B10DCA958001096A3 /* PBCreateTagSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBCreateTagSheet.h; sourceTree = "<group>"; };
-		D8E3B34C10DCA958001096A3 /* PBCreateTagSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBCreateTagSheet.m; sourceTree = "<group>"; };
-		D8E3B38110DD4E2C001096A3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PBCreateTagSheet.xib; sourceTree = "<group>"; };
 		D8EB6168122F643E00FCCAF4 /* GitXRelativeDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitXRelativeDateFormatter.h; sourceTree = "<group>"; };
 		D8EB6169122F643E00FCCAF4 /* GitXRelativeDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitXRelativeDateFormatter.m; sourceTree = "<group>"; };
 		D8F01C4A12182F19007F729F /* GitX.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.sdef; path = GitX.sdef; sourceTree = "<group>"; };
@@ -326,7 +303,6 @@
 		D8F4AB7812298CE200D6D53C /* rewindImage.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = rewindImage.pdf; path = Images/rewindImage.pdf; sourceTree = "<group>"; };
 		D8FBCF17115FA20C0098676A /* PBGitSHA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGitSHA.h; sourceTree = "<group>"; };
 		D8FBCF18115FA20C0098676A /* PBGitSHA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitSHA.m; sourceTree = "<group>"; };
-		D8FDD9F611432A12005647F6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PBCloneRepositoryPanel.xib; sourceTree = "<group>"; };
 		D8FDDA5C114335E8005647F6 /* PBGitSVBranchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGitSVBranchItem.h; sourceTree = "<group>"; };
 		D8FDDA5D114335E8005647F6 /* PBGitSVBranchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitSVBranchItem.m; sourceTree = "<group>"; };
 		D8FDDA5E114335E8005647F6 /* PBGitSVFolderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGitSVFolderItem.h; sourceTree = "<group>"; };
@@ -399,7 +375,6 @@
 		F5886A120ED5D33D0066E74C /* SpeedTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpeedTest-Info.plist"; sourceTree = "<group>"; };
 		F58DB55710566D3500CFDF4A /* PBGitSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGitSidebarController.h; sourceTree = "<group>"; };
 		F58DB55810566D3500CFDF4A /* PBGitSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGitSidebarController.m; sourceTree = "<group>"; };
-		F58DB55F10566E3900CFDF4A /* PBGitSidebarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PBGitSidebarView.xib; sourceTree = "<group>"; };
 		F58DB5E6105671B600CFDF4A /* PBSourceViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBSourceViewItem.h; sourceTree = "<group>"; };
 		F58DB5E7105671B600CFDF4A /* PBSourceViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBSourceViewItem.m; sourceTree = "<group>"; };
 		F59116E50E843BB50072CCB1 /* PBGitCommitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PBGitCommitView.xib; sourceTree = "<group>"; };
@@ -721,15 +696,9 @@
 				F5E424100EA3E4D60046E362 /* PBDiffWindow.xib */,
 				F52BCE020E84208300AA3741 /* PBGitHistoryView.xib */,
 				F59116E50E843BB50072CCB1 /* PBGitCommitView.xib */,
-				D85B939210E3D8B4007F3C28 /* PBCreateBranchSheet.xib */,
-				D889EB3010E6BCBB00F08413 /* PBCreateTagSheet.xib */,
 				D8C1B77110E875CF009B7F8B /* PBRemoteProgressSheet.xib */,
-				D8083C45111F136400337480 /* PBAddRemoteSheet.xib */,
-				D8083DCB111F918900337480 /* PBCloneRepsitoryToSheet.xib */,
-				D8FDD9F511432A12005647F6 /* PBCloneRepositoryPanel.xib */,
 				47DBDB680E94EF6500671A1E /* Preferences.xib */,
 				911111E00E58BD5A00BF76B4 /* RepositoryWindow.xib */,
-				F58DB55F10566E3900CFDF4A /* PBGitSidebarView.xib */,
 				D8022FE711E124A0003C21F6 /* PBGitXMessageSheet.xib */,
 			);
 			name = XIB;
@@ -748,18 +717,8 @@
 			children = (
 				02B41A5C123E307200DFC531 /* PBCommitHookFailedSheet.h */,
 				02B41A5D123E307200DFC531 /* PBCommitHookFailedSheet.m */,
-				D854948410D5C01B0083B917 /* PBCreateBranchSheet.h */,
-				D854948510D5C01B0083B917 /* PBCreateBranchSheet.m */,
-				D8E3B34B10DCA958001096A3 /* PBCreateTagSheet.h */,
-				D8E3B34C10DCA958001096A3 /* PBCreateTagSheet.m */,
 				D8083A2D111E045300337480 /* PBRemoteProgressSheet.h */,
 				D8083A42111E045D00337480 /* PBRemoteProgressSheet.m */,
-				D8083C42111F106800337480 /* PBAddRemoteSheet.h */,
-				D8083C43111F106800337480 /* PBAddRemoteSheet.m */,
-				D8083DC2111F90F300337480 /* PBCloneRepsitoryToSheet.h */,
-				D8083DC3111F90F300337480 /* PBCloneRepsitoryToSheet.m */,
-				D8083E01111FA33700337480 /* PBCloneRepositoryPanel.h */,
-				D8083E02111FA33700337480 /* PBCloneRepositoryPanel.m */,
 				D8022FEB11E124C8003C21F6 /* PBGitXMessageSheet.h */,
 				D8022FEC11E124C8003C21F6 /* PBGitXMessageSheet.m */,
 			);
@@ -1146,13 +1105,7 @@
 				47DBDB6A0E94EF6500671A1E /* Preferences.xib in Resources */,
 				47DBDBB10E94F6CA00671A1E /* Updates.png in Resources */,
 				F569AE930F2CBD7C00C2FFA7 /* Credits.html in Resources */,
-				63D64A5615151DB300D9571D /* PBGitSidebarView.xib in Resources */,
-				D85B939310E3D8B4007F3C28 /* PBCreateBranchSheet.xib in Resources */,
-				D889EB3110E6BCBB00F08413 /* PBCreateTagSheet.xib in Resources */,
 				D8357535112640F100DE249D /* PBRemoteProgressSheet.xib in Resources */,
-				D8083C47111F136400337480 /* PBAddRemoteSheet.xib in Resources */,
-				D8083DCD111F918900337480 /* PBCloneRepsitoryToSheet.xib in Resources */,
-				D8FDD9F711432A12005647F6 /* PBCloneRepositoryPanel.xib in Resources */,
 				D85810551127476E007F254B /* StageView.png in Resources */,
 				D858108311274D28007F254B /* Branch.png in Resources */,
 				D858108411274D28007F254B /* RemoteBranch.png in Resources */,
@@ -1259,12 +1212,7 @@
 				F562C8870FE1766C000EC528 /* NSString_RegEx.m in Sources */,
 				EB2A734A0FEE3F09006601CF /* PBCollapsibleSplitView.m in Sources */,
 				F59F1DD5105C4FF300115F88 /* PBGitIndex.m in Sources */,
-				D854948610D5C01B0083B917 /* PBCreateBranchSheet.m in Sources */,
-				D8E3B34D10DCA958001096A3 /* PBCreateTagSheet.m in Sources */,
 				D8083A43111E045D00337480 /* PBRemoteProgressSheet.m in Sources */,
-				D8083C44111F106800337480 /* PBAddRemoteSheet.m in Sources */,
-				D8083DC4111F90F300337480 /* PBCloneRepsitoryToSheet.m in Sources */,
-				D8083E03111FA33700337480 /* PBCloneRepositoryPanel.m in Sources */,
 				F58DB55910566D3500CFDF4A /* PBGitSidebarController.m in Sources */,
 				F58DB5E8105671B600CFDF4A /* PBSourceViewItem.m in Sources */,
 				F567B88D1057FA9F000DB976 /* NSOutlineViewExt.m in Sources */,
@@ -1350,52 +1298,12 @@
 			name = RepositoryWindow.xib;
 			sourceTree = "<group>";
 		};
-		D8083C45111F136400337480 /* PBAddRemoteSheet.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8083C46111F136400337480 /* English */,
-			);
-			name = PBAddRemoteSheet.xib;
-			sourceTree = "<group>";
-		};
-		D8083DCB111F918900337480 /* PBCloneRepsitoryToSheet.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8083DCC111F918900337480 /* English */,
-			);
-			name = PBCloneRepsitoryToSheet.xib;
-			sourceTree = "<group>";
-		};
-		D85B939210E3D8B4007F3C28 /* PBCreateBranchSheet.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D854949310D5C3E20083B917 /* English */,
-			);
-			name = PBCreateBranchSheet.xib;
-			sourceTree = "<group>";
-		};
-		D889EB3010E6BCBB00F08413 /* PBCreateTagSheet.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8E3B38110DD4E2C001096A3 /* English */,
-			);
-			name = PBCreateTagSheet.xib;
-			sourceTree = "<group>";
-		};
 		D8C1B77110E875CF009B7F8B /* PBRemoteProgressSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D8C1B77210E875CF009B7F8B /* English */,
 			);
 			name = PBRemoteProgressSheet.xib;
-			sourceTree = "<group>";
-		};
-		D8FDD9F511432A12005647F6 /* PBCloneRepositoryPanel.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D8FDD9F611432A12005647F6 /* English */,
-			);
-			name = PBCloneRepositoryPanel.xib;
 			sourceTree = "<group>";
 		};
 		F5B721C20E05CF7E00AF29DC /* MainMenu.xib */ = {
