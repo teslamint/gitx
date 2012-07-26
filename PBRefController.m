@@ -87,7 +87,7 @@
 	[alert beginSheetModalForWindow:[historyController.repository.windowController window]
 					  modalDelegate:self
 					 didEndSelector:@selector(confirmPushRefSheetDidEnd:returnCode:contextInfo:)
-						contextInfo:info];
+						contextInfo:(void *)info];
 }
 
 - (void)confirmPushRefSheetDidEnd:(NSAlert *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -98,8 +98,8 @@
         [PBGitDefaults suppressDialogWarningForDialog:kDialogConfirmPush];
 
 	if (returnCode == NSAlertDefaultReturn) {
-		PBGitRef *ref = [(NSDictionary *)contextInfo objectForKey:kGitXBranchType];
-		PBGitRef *remoteRef = [(NSDictionary *)contextInfo objectForKey:kGitXRemoteType];
+		PBGitRef *ref = [(__bridge NSDictionary *)contextInfo objectForKey:kGitXBranchType];
+		PBGitRef *remoteRef = [(__bridge NSDictionary *)contextInfo objectForKey:kGitXRemoteType];
 
 		[historyController.repository beginPushRef:ref toRemote:remoteRef];
 	}
@@ -253,7 +253,7 @@
 	[alert beginSheetModalForWindow:[historyController.repository.windowController window]
 					  modalDelegate:self
 					 didEndSelector:@selector(deleteRefSheetDidEnd:returnCode:contextInfo:)
-						contextInfo:ref];
+						contextInfo:(__bridge void *)(ref)];
 }
 
 - (void)deleteRefSheetDidEnd:(NSAlert *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
@@ -264,8 +264,7 @@
         [PBGitDefaults suppressDialogWarningForDialog:kDialogDeleteRef];
 
 	if (returnCode == NSAlertDefaultReturn) {
-		PBGitRef *ref = (PBGitRef *)contextInfo;
-		[historyController.repository deleteRef:ref];
+		[historyController.repository deleteRef:(__bridge PBGitRef *)contextInfo];
 	}
 }
 
@@ -409,7 +408,7 @@
 	[alert beginSheetModalForWindow:[historyController.repository.windowController window]
 					  modalDelegate:self
 					 didEndSelector:@selector(acceptDropInfoAlertDidEnd:returnCode:contextInfo:)
-						contextInfo:dropInfo];
+						contextInfo:(__bridge void *)(dropInfo)];
 
 	return YES;
 }
@@ -419,7 +418,7 @@
     [[alert window] orderOut:nil];
 
 	if (returnCode == NSAlertDefaultReturn)
-		[self dropRef:contextInfo];
+		[self dropRef:(__bridge NSDictionary *)(contextInfo)];
 
 	if ([[alert suppressionButton] state] == NSOnState)
         [PBGitDefaults suppressDialogWarningForDialog:kDialogAcceptDroppedRef];

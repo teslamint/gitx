@@ -15,7 +15,7 @@
 	NSString* sha;
 	NSString* path;
 	PBGitRepository* repository;
-	__weak PBGitTree* parent;
+	PBGitTree* parent;
 	NSArray* children;
 	BOOL leaf;
 
@@ -23,24 +23,21 @@
 	NSDate* localMtime;
 }
 
-+ (PBGitTree*) rootForCommit: (id) commit;
-+ (PBGitTree*) treeForTree: (PBGitTree*) tree andPath: (NSString*) path;
-- (void) saveToFolder: (NSString *) directory;
++ (PBGitTree*)rootForCommit:(id)commit;
++ (PBGitTree*)treeForTree:(PBGitTree *)tree andPath:(NSString *)path;
+- (void)saveToFolder:(NSString *)directory;
 - (NSString *)textContents;
 - (NSString *)blame;
-- (NSString *) log:(NSString *)format;
-
-- (NSString*) tmpFileNameForContents;
+- (NSString *)log:(NSString *)format;
+- (NSString *)tmpFileNameForContents;
 - (long long)fileSize;
 
-@property(copy) NSString* sha;
-@property(copy) NSString* path;
-@property(assign) BOOL leaf;
-@property(retain) PBGitRepository* repository;
-@property(assign) __weak PBGitTree* parent;
-
-@property(readonly) NSArray* children;
-@property(readonly) NSString* fullPath;
-@property(readonly) NSString* contents;
-
+@property (nonatomic, copy) NSString* sha;
+@property (nonatomic, copy) NSString* path;
+@property (nonatomic) BOOL leaf;
+@property (nonatomic) PBGitRepository* repository;
+@property (nonatomic) PBGitTree* parent;
+@property (nonatomic, readonly) NSArray* children;
+@property (nonatomic, readonly) NSString* fullPath;
+@property (nonatomic, readonly) NSString* contents;
 @end

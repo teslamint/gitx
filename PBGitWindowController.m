@@ -185,9 +185,9 @@
 	}
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([context isEqualToString:@"statusChange"]) {
+    if ([(__bridge NSString *)context isEqualToString:@"statusChange"]) {
 		[self updateStatus];
 		return;
 	}

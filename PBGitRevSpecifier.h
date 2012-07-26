@@ -16,26 +16,25 @@
 	BOOL isSimpleRef;
 }
 
-- (id) initWithParameters:(NSArray *)params description:(NSString *)descrip;
-- (id) initWithParameters:(NSArray*) params;
-- (id) initWithRef: (PBGitRef*) ref;
+- (id)initWithParameters:(NSArray *)params description:(NSString *)descrip;
+- (id)initWithParameters:(NSArray*) params;
+- (id)initWithRef: (PBGitRef*) ref;
 
-- (NSString*) simpleRef;
-- (PBGitRef *) ref;
-- (BOOL) hasPathLimiter;
-- (BOOL) hasLeftRight;
-- (NSString *) title;
+- (NSString*)simpleRef;
+- (PBGitRef *)ref;
+- (BOOL)hasPathLimiter;
+- (BOOL)hasLeftRight;
+- (NSString *)title;
 
-- (BOOL) isEqual: (PBGitRevSpecifier*) other;
-- (BOOL) isAllBranchesRev;
-- (BOOL) isLocalBranchesRev;
+- (BOOL)isEqual: (PBGitRevSpecifier*)other;
+- (BOOL)isAllBranchesRev;
+- (BOOL)isLocalBranchesRev;
 
 + (PBGitRevSpecifier *)allBranchesRevSpec;
 + (PBGitRevSpecifier *)localBranchesRevSpec;
 
-@property(retain)   NSString *description;
-@property(readonly) NSArray *parameters;
-@property(retain)   NSURL *workingDirectory;
-@property(readonly) BOOL isSimpleRef;
-
+@property (nonatomic) NSString *description;
+@property (nonatomic, readonly) NSArray *parameters;
+@property (nonatomic) NSURL *workingDirectory;
+@property (nonatomic, readonly) BOOL isSimpleRef;
 @end

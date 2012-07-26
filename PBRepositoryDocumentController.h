@@ -7,14 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitRevSpecifier.h"
-
 
 @interface PBRepositoryDocumentController : NSDocumentController
-{
-
-}
-
 - (id) documentForLocation:(NSURL*) url;
 - (void)initNewRepositoryAtURL:(NSURL *)url;
 @end

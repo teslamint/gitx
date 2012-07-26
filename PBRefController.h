@@ -16,10 +16,9 @@
 @class PBRefMenuItem;
 
 @interface PBRefController : NSObject <PBRefContextDelegate> {
-	IBOutlet __weak PBGitHistoryController *historyController;
+	IBOutlet PBGitHistoryController *historyController;
 	IBOutlet NSArrayController *commitController;
 	IBOutlet PBCommitList *commitList;
-
 	IBOutlet NSPopUpButton *branchPopUp;
 }
 
@@ -39,9 +38,8 @@
 - (void) diffWithHEAD:(PBRefMenuItem *)sender;
 - (void) showTagInfoSheet:(PBRefMenuItem *)sender;
 
-- (NSArray *) menuItemsForRef:(PBGitRef *)ref;
-- (NSArray *) menuItemsForCommit:(PBGitCommit *)commit;
+- (NSArray *)menuItemsForRef:(PBGitRef *)ref;
+- (NSArray *)menuItemsForCommit:(PBGitCommit *)commit;
 - (NSArray *)menuItemsForRow:(NSInteger)rowIndex;
-
 
 @end

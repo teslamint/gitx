@@ -129,12 +129,12 @@ static NSString * PBStringFromBranchFilterType(PBGitXBranchFilterType type) {
 - (void)findInModeScriptCommand:(NSScriptCommand *)command;
 
 
-@property (assign) BOOL hasChanged;
-@property (readonly) PBGitWindowController *windowController;
-@property (readonly) PBGitConfig *config;
-@property (retain) PBGitHistoryList *revisionList;
-@property (assign) NSMutableArray* branches;
-@property (assign) PBGitRevSpecifier *currentBranch;
-@property (assign) NSInteger currentBranchFilter;
-@property (retain) NSMutableDictionary* refs;
+@property (nonatomic) BOOL hasChanged;
+@property (nonatomic, readonly) PBGitWindowController *windowController;
+@property (nonatomic, readonly) PBGitConfig *config;
+@property (nonatomic) PBGitHistoryList *revisionList;
+@property (nonatomic) NSMutableArray* branches;
+@property (nonatomic) PBGitRevSpecifier *currentBranch;
+@property (nonatomic) NSInteger currentBranchFilter;
+@property (nonatomic) NSMutableDictionary* refs;
 @end

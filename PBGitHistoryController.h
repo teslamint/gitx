@@ -18,24 +18,22 @@
 @class PBRefController;
 @class QLPreviewPanel;
 @class PBCommitList;
-@class GLFileView;
 @class PBGitSHA;
 
 @class PBHistorySearchController;
 
 @interface PBGitHistoryController : PBViewController {
-	IBOutlet PBRefController *refController;
+	IBOutlet PBRefController *__unsafe_unretained refController;
 	IBOutlet NSSearchField *searchField;
-	IBOutlet NSArrayController* commitController;
-	IBOutlet NSTreeController* treeController;
+	IBOutlet NSArrayController *commitController;
+	IBOutlet NSTreeController *treeController;
 	IBOutlet NSOutlineView* fileBrowser;
 	NSArray *currentFileBrowserSelectionPath;
-	IBOutlet PBCommitList* commitList;
+	IBOutlet PBCommitList *commitList;
 	IBOutlet NSSplitView *historySplitView;
 	IBOutlet PBWebHistoryController *webHistoryController;
     QLPreviewPanel* previewPanel;
 	IBOutlet PBHistorySearchController *searchController;
-	IBOutlet GLFileView *fileView;
 
 	IBOutlet PBGitGradientBarView *upperToolbarView;
 	IBOutlet NSButton *mergeButton;
@@ -56,14 +54,14 @@
 	PBGitCommit *selectedCommit;
 }
 
-@property (readonly) NSTreeController* treeController;
-@property (assign) int selectedCommitDetailsIndex;
-@property (retain) PBGitCommit *webCommit;
-@property (retain) PBGitTree* gitTree;
-@property (readonly) NSArrayController *commitController;
-@property (readonly) PBRefController *refController;
-@property (readonly) PBHistorySearchController *searchController;
-@property (readonly) PBCommitList *commitList;
+@property (nonatomic, readonly) NSTreeController* treeController;
+@property (nonatomic, assign) int selectedCommitDetailsIndex;
+@property (nonatomic, strong) PBGitCommit *webCommit;
+@property (nonatomic, strong) PBGitTree* gitTree;
+@property (nonatomic, readonly) NSArrayController *commitController;
+@property (nonatomic, unsafe_unretained, readonly) PBRefController *refController;
+@property (nonatomic, readonly) PBHistorySearchController *searchController;
+@property (nonatomic, readonly) PBCommitList *commitList;
 
 - (IBAction) setDetailedView:(id)sender;
 - (IBAction) setTreeView:(id)sender;

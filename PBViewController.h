@@ -11,17 +11,16 @@
 #import "PBGitWindowController.h"
 
 @interface PBViewController : NSViewController {
-	__weak PBGitRepository *repository;
-	__weak PBGitWindowController *superController;
-
+	PBGitRepository *repository;
+	PBGitWindowController *superController;
 	NSString *status;
 	BOOL isBusy;
 	BOOL hasViewLoaded;
 }
 
-@property (readonly) __weak PBGitRepository *repository;
-@property(copy) NSString *status;
-@property(assign) BOOL isBusy;
+@property (nonatomic, readonly) PBGitRepository *repository;
+@property (nonatomic, copy) NSString *status;
+@property (nonatomic) BOOL isBusy;
 
 - (id)initWithRepository:(PBGitRepository *)theRepository superController:(PBGitWindowController *)controller;
 
@@ -29,7 +28,7 @@
 - (void)closeView;
 
 /* Updateview is called every time it is loaded into the main view */
-- (void) updateView;
+- (void)updateView;
 
 /* Called after awakeFromNib:, and the view has been loaded into the main view.
  * Useful for resizing stuff after everything has been set in the right position
@@ -37,6 +36,6 @@
 - (void)viewLoaded;
 
 - (NSResponder *)firstResponder;
-- (IBAction) refresh:(id)sender;
+- (IBAction)refresh:(id)sender;
 
 @end

@@ -55,7 +55,7 @@ extern NSString *PBGitIndexOperationFailed;
 
 // Whether we want the changes for amending,
 // or for
-@property BOOL amend;
+@property (nonatomic) BOOL amend;
 
 - (id)initWithRepository:(PBGitRepository *)repository workingDirectory:(NSURL *)workingDirectory;
 

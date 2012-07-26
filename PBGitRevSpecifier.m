@@ -10,14 +10,10 @@
 
 
 @implementation PBGitRevSpecifier
-
 @synthesize parameters, description, workingDirectory;
 @synthesize isSimpleRef;
 
-
-// internal designated init
-- (id) initWithParameters:(NSArray *)params description:(NSString *)descrip
-{
+- (id)initWithParameters:(NSArray *)params description:(NSString *)descrip {
 	parameters = params;
 	description = descrip;
 
@@ -36,22 +32,16 @@
 	return self;
 }
 
-- (id) initWithParameters:(NSArray *)params
-{
-	[self initWithParameters:params description:nil];
-	return self;
+- (id)initWithParameters:(NSArray *)params {
+	return self = [self initWithParameters:params description:nil];
 }
 
-- (id) initWithRef:(PBGitRef *)ref
-{
-	[self initWithParameters:[NSArray arrayWithObject:ref.ref] description:ref.shortName];
-	return self;
+- (id)initWithRef:(PBGitRef *)ref {
+	return self = [self initWithParameters:[NSArray arrayWithObject:ref.ref] description:ref.shortName];
 }
 
-- (id) initWithCoder:(NSCoder *)coder
-{
-	[self initWithParameters:[coder decodeObjectForKey:@"Parameters"] description:[coder decodeObjectForKey:@"Description"]];
-	return self;
+- (id) initWithCoder:(NSCoder *)coder {
+	return self = [self initWithParameters:[coder decodeObjectForKey:@"Parameters"] description:[coder decodeObjectForKey:@"Description"]];
 }
 
 + (PBGitRevSpecifier *)allBranchesRevSpec
@@ -64,27 +54,20 @@
 	return [[PBGitRevSpecifier alloc] initWithParameters:[NSArray arrayWithObject:@"--branches"] description:@"Local branches"];
 }
 
-- (NSString*) simpleRef
-{
-	if (![self isSimpleRef])
-		return nil;
-	return [parameters objectAtIndex:0];
+- (NSString*)simpleRef {
+	return [self isSimpleRef]
+        ? [parameters objectAtIndex:0]
+        : nil;
 }
 
-- (PBGitRef *) ref
-{
-	if (![self isSimpleRef])
-		return nil;
-
-	return [PBGitRef refFromString:[self simpleRef]];
+- (PBGitRef *)ref {
+	return [self isSimpleRef]
+        ? [PBGitRef refFromString:[self simpleRef]]
+        : nil;
 }
 
-- (NSString *) description
-{
-	if (!description)
-		description = [parameters componentsJoinedByString:@" "];
-
-	return description;
+- (NSString *)description {
+	return description ?: ([parameters componentsJoinedByString:@" "]);
 }
 
 - (NSString *) title

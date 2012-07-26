@@ -49,23 +49,23 @@ extern NSString * const kGitXCommitType;
 - (NSString *) shortName;
 - (NSString *) refishType;
 
-@property (readonly) PBGitSHA *sha;
-@property (copy) NSString* subject;
-@property (copy) NSString* author;
-@property (copy) NSString *committer;
-@property (retain) NSArray *parents;
+@property (nonatomic, readonly) PBGitSHA *sha;
+@property (nonatomic, copy) NSString* subject;
+@property (nonatomic, copy) NSString* author;
+@property (nonatomic, copy) NSString *committer;
+@property (nonatomic, strong) NSArray *parents;
 
-@property (assign) int timestamp;
+@property (nonatomic) int timestamp;
 
-@property (retain) NSMutableArray* refs;
-@property (readonly) NSDate *date;
-@property (readonly) NSString* dateString;
-@property (readonly) NSString* patch;
-@property (assign) char sign;
+@property (nonatomic, strong) NSMutableArray* refs;
+@property (nonatomic, readonly) NSDate *date;
+@property (nonatomic, readonly) NSString* dateString;
+@property (nonatomic, readonly) NSString* patch;
+@property (nonatomic) char sign;
 
-@property (readonly) NSString* details;
-@property (readonly) PBGitTree* tree;
-@property (readonly) NSArray* treeContents;
-@property (retain) PBGitRepository* repository;
-@property (retain) id lineInfo;
+@property (nonatomic, readonly) NSString* details;
+@property (nonatomic, readonly) PBGitTree* tree;
+@property (nonatomic, readonly) NSArray* treeContents;
+@property (nonatomic, strong) PBGitRepository* repository;
+@property (nonatomic, strong) id lineInfo;
 @end

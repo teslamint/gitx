@@ -10,19 +10,18 @@
 #import "PBGitRepository.h"
 #import "PBGitXProtocol.h"
 #import "PBGitDefaults.h"
-
 #include <SystemConfiguration/SCNetworkReachability.h>
 
 @interface PBWebController()
 - (void)preferencesChangedWithNotification:(NSNotification *)theNotification;
 @end
 
-@implementation PBWebController
 
+
+@implementation PBWebController
 @synthesize startFile, repository;
 
-- (void) awakeFromNib
-{
+- (void)awakeFromNib {
 	NSString *path = [NSString stringWithFormat:@"html/views/%@", startFile];
 	NSString* file = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:path];
 	NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:file]];
@@ -174,8 +173,11 @@
 {
 	SEL selector = NSSelectorFromString([arguments objectAtIndex:0]);
 	id object = [arguments objectAtIndex:1];
+    
+    //FIXME warning http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
 	id ret = [object performSelector:selector];
-	NSArray *returnArray = [NSArray arrayWithObjects:[NSThread currentThread], ret, nil];
+	
+    NSArray *returnArray = [NSArray arrayWithObjects:[NSThread currentThread], ret, nil];
 	[self performSelectorOnMainThread:@selector(threadFinished:) withObject:returnArray waitUntilDone:NO];
 }
 

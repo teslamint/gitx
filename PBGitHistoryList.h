@@ -7,14 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-
 @class PBGitRepository;
 @class PBGitRevSpecifier;
 @class PBGitRef;
 @class PBGitRevList;
 @class PBGitHistoryGrapher;
 @class PBGitSHA;
+
 
 @interface PBGitHistoryList : NSObject {
 	PBGitRepository *repository;
@@ -36,16 +35,16 @@
 	BOOL isUpdating;
 }
 
-- (id) initWithRepository:(PBGitRepository *)repo;
-- (void) forceUpdate;
-- (void) updateHistory;
+- (id)initWithRepository:(PBGitRepository *)repo;
+- (void)forceUpdate;
+- (void)updateHistory;
 - (void)cleanup;
 
-- (void) updateCommitsFromGrapher:(NSDictionary *)commitData;
+- (void)updateCommitsFromGrapher:(NSDictionary *)commitData;
 
 
-@property (retain) PBGitRevList *projectRevList;
-@property (retain) NSMutableArray *commits;
+@property (strong) PBGitRevList *projectRevList;
+@property (strong) NSMutableArray *commits;
 @property (readonly) NSArray *projectCommits;
 @property (assign) BOOL isUpdating;
 

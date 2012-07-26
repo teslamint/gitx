@@ -20,7 +20,6 @@
 #import "PBHistorySearchController.h"
 #define QLPreviewPanel NSClassFromString(@"QLPreviewPanel")
 #import "PBQLTextView.h"
-#import "GLFileView.h"
 
 
 #define kHistorySelectedDetailIndexKey @"PBHistorySelectedDetailIndex"
@@ -220,21 +219,23 @@
 	}
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)ctx
 {
-    if ([(NSString *)context isEqualToString: @"commitChange"]) {
+    NSString *context = (__bridge NSString *)ctx;
+    
+    if ([context isEqualToString: @"commitChange"]) {
 		[self updateKeys];
 		[self restoreFileBrowserSelection];
 		return;
 	}
 
-	if ([(NSString *)context isEqualToString: @"treeChange"]) {
+	if ([context isEqualToString: @"treeChange"]) {
 		[self updateQuicklookForce: NO];
 		[self saveFileBrowserSelection];
 		return;
 	}
 
-	if([(NSString *)context isEqualToString:@"branchChange"]) {
+	if([context isEqualToString:@"branchChange"]) {
 		// Reset the sorting
 		if ([[commitController sortDescriptors] count])
 			[commitController setSortDescriptors:[NSArray array]];
@@ -242,18 +243,18 @@
 		return;
 	}
 
-	if([(NSString *)context isEqualToString:@"updateRefs"]) {
+	if([context isEqualToString:@"updateRefs"]) {
 		[commitController rearrangeObjects];
 		return;
 	}
 
-	if ([(NSString *)context isEqualToString:@"branchFilterChange"]) {
+	if ([context isEqualToString:@"branchFilterChange"]) {
 		[PBGitDefaults setBranchFilter:repository.currentBranchFilter];
 		[self updateBranchFilterMatrix];
 		return;
 	}
 
-	if([(NSString *)context isEqualToString:@"updateCommitCount"] || [(NSString *)context isEqualToString:@"revisionListUpdating"]) {
+	if([context isEqualToString:@"updateCommitCount"] || [(NSString *)context isEqualToString:@"revisionListUpdating"]) {
 		[self updateStatus];
 
 		if ([repository.currentBranch isSimpleRef])
@@ -263,7 +264,7 @@
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:ctx];
 }
 
 - (IBAction) openSelectedFile:(id)sender
@@ -495,7 +496,6 @@
 	}
 
 	[webHistoryController closeView];
-	[fileView closeView];
 
 	[super closeView];
 }

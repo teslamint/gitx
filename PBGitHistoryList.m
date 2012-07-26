@@ -344,7 +344,7 @@
 #pragma mark -
 #pragma mark Key Value Observing
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
 	if ([@"currentBranch" isEqualToString:context]) {
 		[self updateHistory];
@@ -368,7 +368,7 @@
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:(void *)context];
 }
 
 @end

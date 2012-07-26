@@ -11,8 +11,10 @@
 #import "PBGitRevList.h"
 
 @implementation PBRepositoryDocumentController
+
 // This method is overridden to configure the open panel to only allow
 // selection of directories
+
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions
 {
 	[openPanel setCanChooseFiles:YES];

@@ -11,24 +11,20 @@
 
 @implementation PBGraphCellInfo
 @synthesize lines, position, numColumns, sign, nLines;
-- (id)initWithPosition:(int)p andLines:(struct PBGitGraphLine *)l
-{
+
+- (id)initWithPosition:(int)p andLines:(struct PBGitGraphLine *)l {
 	position = p;
 	lines = l;
-	
 	return self;
 }
 
-- (void)setLines:(struct PBGitGraphLine *)l
-{
+- (void)setLines:(struct PBGitGraphLine *)l {
 	free(lines);
 	lines = l;
 }
 
--(void) finalize
-{
+-(void)dealloc {
 	free(lines);
-	[super finalize];
 }
 
 @end

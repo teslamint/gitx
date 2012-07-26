@@ -37,10 +37,10 @@
 
 - (PBGitRef *) ref;
 
-@property(retain) NSString *title;
-@property(readonly) NSMutableArray *children;
-@property(assign) BOOL isGroupItem, isUncollapsible;
-@property(retain) PBGitRevSpecifier *revSpecifier;
-@property(retain) PBSourceViewItem *parent;
-@property(readonly) NSImage *icon;
+@property(nonatomic) NSString *title;
+@property(nonatomic, readonly) NSMutableArray *children;
+@property(nonatomic) BOOL isGroupItem, isUncollapsible;
+@property(nonatomic) PBGitRevSpecifier *revSpecifier;
+@property(nonatomic) PBSourceViewItem *parent;
+@property(nonatomic, readonly) NSImage *icon;
 @end

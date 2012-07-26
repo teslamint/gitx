@@ -53,7 +53,6 @@
 							<int key="NSvFlags">1314</int>
 							<string key="NSFrame">{{18, 16}, {361, 20}}</string>
 							<reference key="NSSuperview" ref="1006"/>
-							<reference key="NSNextKeyView"/>
 							<int key="NSpiFlags">16394</int>
 							<double key="NSMaxValue">100</double>
 						</object>

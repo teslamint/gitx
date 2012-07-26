@@ -21,14 +21,14 @@ extern NSString * const kGitXProgressErrorInfo;
 @interface PBRemoteProgressSheet : NSWindowController {
 	NSWindowController *controller;
 
-	NSArray  *arguments;
+	NSArray *arguments;
 	NSString *title;
 	NSString *description;
 
-	NSTask    *gitTask;
-	NSInteger  returnCode;
+	NSTask *gitTask;
+	NSInteger returnCode;
 
-	NSTextField         *progressDescription;
+	NSTextField *progressDescription;
 	NSProgressIndicator *progressIndicator;
 
 	NSTimer *taskTimer;
@@ -39,8 +39,8 @@ extern NSString * const kGitXProgressErrorInfo;
 + (void) beginRemoteProgressSheetForArguments:(NSArray *)args title:(NSString *)theTitle description:(NSString *)theDescription inRepository:(PBGitRepository *)repo;
 
 
-@property (assign) IBOutlet NSTextField         *progressDescription;
-@property (assign) IBOutlet NSProgressIndicator *progressIndicator;
+@property (nonatomic) IBOutlet NSTextField *progressDescription;
+@property (nonatomic) IBOutlet NSProgressIndicator *progressIndicator;
 
 
 @end

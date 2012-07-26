@@ -6,6 +6,7 @@
 //  Copyright 2010 Nathan Kinsinger. All rights reserved.
 //
 
+#import "PBCommitList.h"
 #import "PBHistorySearchController.h"
 #import "PBGitHistoryController.h"
 #import "PBGitRepository.h"
@@ -133,7 +134,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ([(NSString *)context isEqualToString:kGitXSearchArrangedObjectsContext]) {
+	if ([(__bridge NSString *)context isEqualToString:kGitXSearchArrangedObjectsContext]) {
 		// the objects in the commitlist changed so the result indexes are no longer valid
 		[self clearSearch];
 		return;

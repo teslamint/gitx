@@ -31,9 +31,9 @@
 	[self showDiff:diffController.diff];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-    if ([(NSString *)context isEqualToString: @"ChangedDiff"])
+    if ([context isEqualToString: @"ChangedDiff"])
 		[self showDiff:diffController.diff];
 }
 
