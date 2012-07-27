@@ -509,10 +509,8 @@ NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 {
 	if ([self.fileURL.path hasSuffix:@"/.git"])
 		return [self.fileURL.path substringToIndex:[self.fileURL.path length] - 5];
-	else if ([[self outputForCommand:@"rev-parse --is-inside-work-tree"] isEqualToString:@"true"])
-		return [PBGitBinary path];
-	
-	return nil;
+	else
+        return self.fileURL.path; // probably submodule
 }
 
 #pragma mark Remotes
