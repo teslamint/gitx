@@ -79,11 +79,6 @@
 - (void)showInFinderAction:(id)sender;
 - (void)openFilesAction:(id)sender;
 
-// Repository Methods
-- (IBAction) merge:(id)sender;
-- (IBAction) cherryPick:(id)sender;
-- (IBAction) rebase:(id)sender;
-
 // Find/Search methods
 - (IBAction)selectNext:(id)sender;
 - (IBAction)selectPrevious:(id)sender;

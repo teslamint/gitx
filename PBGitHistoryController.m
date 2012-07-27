@@ -549,15 +549,6 @@
 	}
 }
 
-- (void) checkoutFiles:(id)sender
-{
-	NSMutableArray *files = [NSMutableArray array];
-	for (NSString *filePath in [sender representedObject])
-		[files addObject:[filePath stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-
-	[repository checkoutFiles:files fromRefish:selectedCommit];
-}
-
 - (void) diffFilesAction:(id)sender
 {
 	[PBDiffWindowController showDiffWindowWithFiles:[sender representedObject] fromCommit:selectedCommit diffCommit:nil];
@@ -639,25 +630,6 @@
 }
 
 
-#pragma mark Repository Methods
-
-- (IBAction) merge:(id)sender
-{
-	if (selectedCommit)
-		[repository mergeWithRefish:selectedCommit];
-}
-
-- (IBAction) cherryPick:(id)sender
-{
-	if (selectedCommit)
-		[repository cherryPickRefish:selectedCommit];
-}
-
-- (IBAction) rebase:(id)sender
-{
-	if (selectedCommit)
-		[repository rebaseBranch:nil onRefish:selectedCommit];
-}
 
 #pragma mark -
 #pragma mark Quick Look Public API support

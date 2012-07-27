@@ -367,35 +367,4 @@ enum  {
 	[remoteControls setEnabled:hasRemote forSegment:kPushSegment];
 }
 
-- (IBAction) fetchPullPushAction:(id)sender
-{
-	NSInteger selectedSegment = [sender selectedSegment];
-
-	NSInteger index = [sourceView selectedRow];
-	PBSourceViewItem *item = [sourceView itemAtRow:index];
-	PBGitRef *ref = [[item revSpecifier] ref];
-
-	if (!ref && (item.parent == remotes))
-		ref = [PBGitRef refFromString:[kGitXRemoteRefPrefix stringByAppendingString:[item title]]];
-
-	if (![ref isRemote] && ![ref isBranch])
-		return;
-
-	PBGitRef *remoteRef = [repository remoteRefForBranch:ref error:NULL];
-	if (!remoteRef)
-		return;
-
-	if (selectedSegment == kFetchSegment)
-		[repository beginFetchFromRemoteForRef:ref];
-	else if (selectedSegment == kPullSegment)
-		[repository beginPullFromRemote:remoteRef forRef:ref];
-	else if (selectedSegment == kPushSegment) {
-		if ([ref isRemote])
-			[historyViewController.refController showConfirmPushRefSheet:nil remote:remoteRef];
-		else if ([ref isBranch])
-			[historyViewController.refController showConfirmPushRefSheet:ref remote:remoteRef];
-	}
-}
-
-
 @end

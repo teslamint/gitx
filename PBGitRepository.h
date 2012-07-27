@@ -12,7 +12,6 @@
 #import "PBGitConfig.h"
 #import "PBGitRefish.h"
 
-extern NSString* PBGitRepositoryErrorDomain;
 typedef enum branchFilterTypes {
 	kGitXAllBranchesFilter = 0,
 	kGitXLocalRemoteBranchesFilter,
@@ -41,7 +40,7 @@ static NSString * PBStringFromBranchFilterType(PBGitXBranchFilterType type) {
 @class PBGitSHA;
 
 @interface PBGitRepository : NSDocument {
-	PBGitHistoryList* revisionList;
+	PBGitHistoryList *revisionList;
 	PBGitConfig *config;
 
 	BOOL hasChanged;
@@ -54,46 +53,35 @@ static NSString * PBStringFromBranchFilterType(PBGitXBranchFilterType type) {
 	PBGitSHA* _headSha;
 }
 
-- (void) cloneRepositoryToPath:(NSString *)path bare:(BOOL)isBare;
-- (void) beginAddRemote:(NSString *)remoteName forURL:(NSString *)remoteURL;
-- (void) beginFetchFromRemoteForRef:(PBGitRef *)ref;
-- (void) beginPullFromRemote:(PBGitRef *)remoteRef forRef:(PBGitRef *)ref;
-- (void) beginPushRef:(PBGitRef *)ref toRemote:(PBGitRef *)remoteRef;
-- (BOOL) checkoutRefish:(id <PBGitRefish>)ref;
-- (BOOL) checkoutFiles:(NSArray *)files fromRefish:(id <PBGitRefish>)ref;
-- (BOOL) mergeWithRefish:(id <PBGitRefish>)ref;
-- (BOOL) cherryPickRefish:(id <PBGitRefish>)ref;
-- (BOOL) rebaseBranch:(id <PBGitRefish>)branch onRefish:(id <PBGitRefish>)upstream;
-- (BOOL) createBranch:(NSString *)branchName atRefish:(id <PBGitRefish>)ref;
-- (BOOL) createTag:(NSString *)tagName message:(NSString *)message atRefish:(id <PBGitRefish>)commitSHA;
-- (BOOL) deleteRemote:(PBGitRef *)ref;
-- (BOOL) deleteRef:(PBGitRef *)ref;
+- (id)initWithURL:(NSURL *)path;
 
-- (NSFileHandle*) handleForCommand:(NSString*) cmd;
-- (NSFileHandle*) handleForArguments:(NSArray*) args;
-- (NSFileHandle *) handleInWorkDirForArguments:(NSArray *)args;
-- (NSString*) outputForCommand:(NSString*) cmd;
+- (void)handleBranchFilterEventForFilter:(PBGitXBranchFilterType)filter additionalArguments:(NSMutableArray *)arguments inWorkingDirectory:(NSURL *)workingDirectory;
+- (void)handleRevListArguments:(NSArray *)arguments inWorkingDirectory:(NSURL *)workingDirectory;
+
+- (NSFileHandle *)handleForCommand:(NSString *) cmd;
+- (NSFileHandle *)handleForArguments:(NSArray *) args;
+- (NSFileHandle *)handleInWorkDirForArguments:(NSArray *)args;
+- (NSString *) outputForCommand:(NSString*) cmd;
 - (NSString *)outputForCommand:(NSString *)str retValue:(int *)ret;
 - (NSString *)outputForArguments:(NSArray *)arguments inputString:(NSString *)input retValue:(int *)ret;
 - (NSString *)outputForArguments:(NSArray *)arguments inputString:(NSString *)input byExtendingEnvironment:(NSDictionary *)dict retValue:(int *)ret;
 
-
-- (NSString*) outputForArguments:(NSArray*) args;
-- (NSString*) outputForArguments:(NSArray*) args retValue:(int *)ret;
-- (NSString *)outputInWorkdirForArguments:(NSArray*) arguments;
-- (NSString *)outputInWorkdirForArguments:(NSArray*) arguments retValue:(int *)ret;
+- (NSString *)outputForArguments:(NSArray *)args;
+- (NSString *)outputForArguments:(NSArray *)args retValue:(int *)ret;
+- (NSString *)outputInWorkdirForArguments:(NSArray *)arguments;
+- (NSString *)outputInWorkdirForArguments:(NSArray *)arguments retValue:(int *)ret;
 - (BOOL)executeHook:(NSString *)name output:(NSString **)output;
-- (BOOL)executeHook:(NSString *)name withArgs:(NSArray*) arguments output:(NSString **)output;
+- (BOOL)executeHook:(NSString *)name withArgs:(NSArray *)arguments output:(NSString **)output;
 
 - (NSString *)workingDirectory;
-- (NSString *) projectName;
+- (NSString *)projectName;
 - (NSString *)gitIgnoreFilename;
 - (BOOL)isBareRepository;
 
-- (void) reloadRefs;
-- (void) addRef:(PBGitRef *)ref fromParameters:(NSArray *)params;
-- (void) lazyReload;
-- (PBGitRevSpecifier*)headRef;
+- (void)reloadRefs;
+- (void)addRef:(PBGitRef *)ref fromParameters:(NSArray *)params;
+- (void)lazyReload;
+- (PBGitRevSpecifier *)headRef;
 - (PBGitSHA *)headSHA;
 - (PBGitCommit *)headCommit;
 - (PBGitSHA *)shaForRef:(PBGitRef *)ref;
@@ -106,28 +94,23 @@ static NSString * PBStringFromBranchFilterType(PBGitXBranchFilterType type) {
 - (BOOL)refExists:(PBGitRef *)ref;
 - (PBGitRef *)refForName:(NSString *)name;
 
-- (NSArray *) remotes;
-- (BOOL) hasRemotes;
-- (PBGitRef *) remoteRefForBranch:(PBGitRef *)branch error:(NSError **)error;
-- (NSString *) infoForRemote:(NSString *)remoteName;
+- (NSArray *)remotes;
+- (BOOL)hasRemotes;
+- (PBGitRef *)remoteRefForBranch:(PBGitRef *)branch error:(NSError **)error;
+- (NSString *)infoForRemote:(NSString *)remoteName;
 
-- (void) readCurrentBranch;
-- (PBGitRevSpecifier*) addBranch: (PBGitRevSpecifier*) rev;
-- (BOOL)removeBranch:(PBGitRevSpecifier *)rev;
+- (void)readCurrentBranch;
 
-- (NSString*) parseSymbolicReference:(NSString*) ref;
-- (NSString*) parseReference:(NSString*) ref;
+- (NSString *)parseSymbolicReference:(NSString *)ref;
+- (NSString *)parseReference:(NSString *)ref;
 
-+ (NSURL*)gitDirForURL:(NSURL*)repositoryURL;
-+ (NSURL*)baseDirForURL:(NSURL*)repositoryURL;
++ (NSURL *)gitDirForURL:(NSURL *)repositoryURL;
++ (NSURL *)baseDirForURL:(NSURL *)repositoryURL;
 
-- (id) initWithURL: (NSURL*) path;
-- (void) setup;
-- (void) forceUpdateRevisions;
+- (void)setup;
+- (void)forceUpdateRevisions;
 
-// for the scripting bridge
-- (void)findInModeScriptCommand:(NSScriptCommand *)command;
-
+- (void)findInModeScriptCommand:(NSScriptCommand *)command; // for the scripting bridge
 
 @property (nonatomic) BOOL hasChanged;
 @property (nonatomic, readonly) PBGitWindowController *windowController;
