@@ -10,41 +10,39 @@
 #import "PBGitDefaults.h"
 #import "PBGitSHA.h"
 
-@implementation PBWebHistoryController
 
+
+@implementation PBWebHistoryController
 @synthesize diff;
 
-- (void) awakeFromNib
-{
+- (void)awakeFromNib {
 	startFile = @"history";
 	repository = historyController.repository;
 	[super awakeFromNib];
 	[historyController addObserver:self forKeyPath:@"webCommit" options:0 context:@"ChangedCommit"];
 }
 
-- (void)closeView
-{
+- (void)closeView {
 	[[self script] setValue:nil forKey:@"commit"];
 	[historyController removeObserver:self forKeyPath:@"webCommit"];
-
 	[super closeView];
 }
 
-- (void) didLoad
-{
+- (void)didLoad {
 	currentSha = nil;
 	[self changeContentTo: historyController.webCommit];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-    if ([(__bridge NSString *)context isEqualToString: @"ChangedCommit"])
-		[self changeContentTo: historyController.webCommit];
-	else
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    if ([context isEqualToString:@"ChangedCommit"]) {
+		[self changeContentTo:historyController.webCommit];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:(__bridge void *)context];
+    }
 }
 
-- (void) changeContentTo: (PBGitCommit *) content
+- (void)changeContentTo:(PBGitCommit *)content
 {
 	if (content == nil || !finishedLoading)
 		return;
@@ -99,28 +97,23 @@
 	[[view windowScriptObject] callWebScriptMethod:@"loadCommitDetails" withArguments:[NSArray arrayWithObject:details]];
 }
 
-- (void)selectCommit:(NSString *)sha
-{
+- (void)selectCommit:(NSString *)sha {
 	[historyController selectCommit:[PBGitSHA shaWithString:sha]];
 }
 
-- (void) sendKey: (NSString*) key
-{
+- (void)sendKey:(NSString *)key {
 	id script = [view windowScriptObject];
 	[script callWebScriptMethod:@"handleKeyFromCocoa" withArguments: [NSArray arrayWithObject:key]];
 }
 
-- (void) copySource
-{
+- (void)copySource {
 	NSString *source = [(DOMHTMLElement *)[[[view mainFrame] DOMDocument] documentElement] outerHTML];
 	NSPasteboard *a =[NSPasteboard generalPasteboard];
 	[a declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
 	[a setString:source forType: NSStringPboardType];
 }
 
-- (NSArray *)	   webView:(WebView *)sender
-contextMenuItemsForElement:(NSDictionary *)element
-		  defaultMenuItems:(NSArray *)defaultMenuItems
+- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems
 {
 	DOMNode *node = [element valueForKey:@"WebElementDOMNode"];
 
@@ -156,22 +149,16 @@ contextMenuItemsForElement:(NSDictionary *)element
 
 
 // Open external links in the default browser
--   (void)webView:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
-   		  request:(NSURLRequest *)request
-     newFrameName:(NSString *)frameName
- decisionListener:(id < WebPolicyDecisionListener >)listener
+- (void)webView:(WebView *)sender decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
 {
 	[[NSWorkspace sharedWorkspace] openURL:[request URL]];
 }
 
-- getConfig:(NSString *)config
-{
+- (id)getConfig:(NSString *)config {
 	return [historyController valueForKeyPath:[@"repository.config." stringByAppendingString:config]];
 }
 
-
-- (void) preferencesChanged
-{
+- (void)preferencesChanged {
 	[[self script] callWebScriptMethod:@"enableFeatures" withArguments:nil];
 }
 

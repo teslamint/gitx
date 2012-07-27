@@ -10,10 +10,11 @@
 #import "PBGitIndexController.h"
 #import "PBGitIndex.h"
 
+
+
 @implementation PBWebChangesController
 
-- (void) awakeFromNib
-{
+- (void)awakeFromNib {
 	selectedFile = nil;
 	selectedFileIsCached = NO;
 
@@ -24,8 +25,7 @@
 	[cachedFilesController addObserver:self forKeyPath:@"selection" options:0 context:@"cachedFileSelected"];
 }
 
-- (void)closeView
-{
+- (void)closeView {
 	[[self script] removeWebScriptKey:@"Index"];
 	[unstagedFilesController removeObserver:self forKeyPath:@"selection"];
 	[cachedFilesController removeObserver:self forKeyPath:@"selection"];
@@ -33,17 +33,12 @@
 	[super closeView];
 }
 
-- (void) didLoad
-{
+- (void)didLoad {
 	[[self script] setValue:controller.index forKey:@"Index"];
 	[self refresh];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object
-						change:(NSDictionary *)change
-					   context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	NSArrayController *otherController;
 	otherController = object == unstagedFilesController ? cachedFilesController : unstagedFilesController;
 	int count = [[object selectedObjects] count];
@@ -70,13 +65,11 @@
 	[self refresh];
 }
 
-- (void) showMultiple: (NSArray *)objects
-{
+- (void)showMultiple:(NSArray *)objects {
 	[[self script] callWebScriptMethod:@"showMultipleFilesSelection" withArguments:[NSArray arrayWithObject:objects]];
 }
 
-- (void) refresh
-{
+- (void)refresh {
 	if (!finishedLoading)
 		return;
 
@@ -86,30 +79,26 @@
 				     [NSNumber numberWithBool:selectedFileIsCached], nil]];
 }
 
-- (void)stageHunk:(NSString *)hunk reverse:(BOOL)reverse
-{
+- (void)stageHunk:(NSString *)hunk reverse:(BOOL)reverse {
 	[controller.index applyPatch:hunk stage:YES reverse:reverse];
 	// FIXME: Don't need a hard refresh
 
 	[self refresh];
 }
 
-- (void) discardHunk:(NSString *)hunk
-{
+- (void) discardHunk:(NSString *)hunk {
     [controller.index applyPatch:hunk stage:NO reverse:YES];
     [self refresh];
 }
 
-- (void) discardHunkAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
+- (void) discardHunkAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    id hunk = (__bridge_transfer NSString *)contextInfo;
     [[alert window] orderOut:nil];
-
 	if (returnCode == NSAlertDefaultReturn)
-		[self discardHunk:(__bridge NSString *)contextInfo];
+		[self discardHunk:hunk];
 }
 
-- (void)discardHunk:(NSString *)hunk altKey:(BOOL)altKey
-{
+- (void)discardHunk:(NSString *)hunk altKey:(BOOL)altKey {
 	if (!altKey) {
         NSAlert *alert = [NSAlert alertWithMessageText:@"Discard hunk"
                                          defaultButton:nil
@@ -119,14 +108,13 @@
 		[alert beginSheetModalForWindow:[[controller view] window]
                           modalDelegate:self
                          didEndSelector:@selector(discardHunkAlertDidEnd:returnCode:contextInfo:)
-                            contextInfo:(__bridge void *)hunk];
+                            contextInfo:(__bridge_retained void *)hunk];
 	} else {
         [self discardHunk:hunk];
     }
 }
 
-- (void) setStateMessage:(NSString *)state
-{
+- (void) setStateMessage:(NSString *)state {
 	id script = [view windowScriptObject];
 	[script callWebScriptMethod:@"setState" withArguments: [NSArray arrayWithObject:state]];
 }

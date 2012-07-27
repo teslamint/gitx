@@ -219,10 +219,8 @@
 	}
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)ctx
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-    NSString *context = (__bridge NSString *)ctx;
-    
     if ([context isEqualToString: @"commitChange"]) {
 		[self updateKeys];
 		[self restoreFileBrowserSelection];
@@ -264,7 +262,7 @@
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:ctx];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:(__bridge void *)context];
 }
 
 - (IBAction) openSelectedFile:(id)sender

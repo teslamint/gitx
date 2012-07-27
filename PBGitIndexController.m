@@ -196,12 +196,14 @@
 	[ws selectFile: path inFileViewerRootedAtPath:nil];
 }
 
-- (void) discardChangesForFilesAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)discardChangesForFilesAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    id files = (__bridge_transfer NSString *)contextInfo;
+    
     [[alert window] orderOut:nil];
 
 	if (returnCode == NSAlertDefaultReturn) {
-        [commitController.index discardChangesForFiles:(__bridge NSArray *)(contextInfo)];
+        [commitController.index discardChangesForFiles:files];
 	}
 }
 
@@ -216,7 +218,7 @@
         [alert beginSheetModalForWindow:[[commitController view] window]
                           modalDelegate:self
                          didEndSelector:@selector(discardChangesForFilesAlertDidEnd:returnCode:contextInfo:)
-                            contextInfo:(__bridge void *)(files)];
+                            contextInfo:(__bridge_retained void *)files];
 	} else {
         [commitController.index discardChangesForFiles:files];
     }

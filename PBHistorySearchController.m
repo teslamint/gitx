@@ -132,15 +132,15 @@
 	[commitController addObserver:self forKeyPath:@"arrangedObjects" options:0 context:kGitXSearchArrangedObjectsContext];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-	if ([(__bridge NSString *)context isEqualToString:kGitXSearchArrangedObjectsContext]) {
+	if ([context isEqualToString:kGitXSearchArrangedObjectsContext]) {
 		// the objects in the commitlist changed so the result indexes are no longer valid
 		[self clearSearch];
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:(__bridge void *)context];
 }
 
 

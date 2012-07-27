@@ -226,17 +226,19 @@
 	[alert beginSheetModalForWindow:[historyController.repository.windowController window]
 					  modalDelegate:self
 					 didEndSelector:@selector(acceptDropInfoAlertDidEnd:returnCode:contextInfo:)
-						contextInfo:(__bridge void *)(dropInfo)];
+						contextInfo:(__bridge_retained void *)dropInfo];
 
 	return YES;
 }
 
 - (void)acceptDropInfoAlertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    NSDictionary *refs = (__bridge_transfer id)contextInfo;
+    
     [[alert window] orderOut:nil];
 
 	if (returnCode == NSAlertDefaultReturn)
-		[self dropRef:(__bridge NSDictionary *)(contextInfo)];
+		[self dropRef:refs];
 
 	if ([[alert suppressionButton] state] == NSOnState)
         [PBGitDefaults suppressDialogWarningForDialog:kDialogAcceptDroppedRef];

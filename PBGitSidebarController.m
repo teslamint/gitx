@@ -72,15 +72,15 @@
 	[super closeView];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-	if ([@"currentBranchChange" isEqualToString:(__bridge NSString *)(context)]) {
+	if ([@"currentBranchChange" isEqualToString:context]) {
 		[sourceView reloadData];
 		[self selectCurrentBranch];
 		return;
 	}
 
-	if ([@"branchesModified" isEqualToString:(__bridge NSString *)(context)]) {
+	if ([@"branchesModified" isEqualToString:context]) {
 		NSInteger changeKind = [(NSNumber *)[change objectForKey:NSKeyValueChangeKindKey] intValue];
 
 		if (changeKind == NSKeyValueChangeInsertion) {
@@ -99,7 +99,7 @@
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:(__bridge void *)context];
 }
 
 - (PBSourceViewItem *) selectedItem

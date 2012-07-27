@@ -181,14 +181,14 @@
 	}
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
 {
-    if ([(__bridge NSString *)context isEqualToString:@"statusChange"]) {
+    if ([context isEqualToString:@"statusChange"]) {
 		[self updateStatus];
 		return;
 	}
 
-	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:(__bridge void *)context];
 }
 
 - (void)setHistorySearch:(NSString *)searchString mode:(NSInteger)mode
