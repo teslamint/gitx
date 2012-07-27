@@ -83,18 +83,16 @@ static NSString* gitPath = nil;
 	NSLog(@"Could not find a git binary higher than version " MIN_GIT_VERSION);
 }
 
-+ (NSString *) path;
-{
++ (NSString *)path {
 	return gitPath;
 }
 
-+ (NSArray *)searchLocations
-{
++ (NSArray *)searchLocations {
 	return @[
-        @"/usr/bin/git",
-        @"/Applications/Xcode.app/Contents/Developer/usr/bin/git",
         @"/usr/local/bin/git",
         @"/opt/local/bin/git",
+        @"/usr/bin/git",
+        @"/Applications/Xcode.app/Contents/Developer/usr/bin/git",
         @"/sw/bin/git",
         @"/opt/git/bin/git",
         @"/usr/local/git/bin/git",
@@ -114,10 +112,8 @@ static NSString* gitPath = nil;
 }
 
 
-+ (NSString *)version
-{
++ (NSString *)version {
 	return [self versionForPath:gitPath];
 }
-
 
 @end
