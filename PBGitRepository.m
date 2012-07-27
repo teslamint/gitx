@@ -10,7 +10,9 @@
 #import "PBGitCommit.h"
 #import "PBGitWindowController.h"
 #import "PBGitBinary.h"
-
+#import "PBGitHistoryList.h"
+#import "PBGitRevSpecifier.h"
+#import "PBGitConfig.h"
 #import "NSFileHandleExt.h"
 #import "PBEasyPipe.h"
 #import "PBGitRef.h"
@@ -19,6 +21,7 @@
 #import "PBGitDefaults.h"
 #import "GitXScriptingConstants.h"
 #import "PBHistorySearchController.h"
+#import "PBGitSHA.h"
 
 NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 
@@ -481,7 +484,7 @@ NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 	return branch;
 }
 
-- (BOOL) removeBranch:(PBGitRevSpecifier *)branch
+- (BOOL)removeBranch:(PBGitRevSpecifier *)branch
 {
 	for (PBGitRevSpecifier *rev in branches) {
 		if ([branch isEqual:rev]) {
@@ -497,12 +500,12 @@ NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 	return NO;
 }
 	
-- (void) readCurrentBranch
+- (void)readCurrentBranch
 {
-		self.currentBranch = [self addBranch: [self headRef]];
+    self.currentBranch = [self addBranch: [self headRef]];
 }
 
-- (NSString *) workingDirectory
+- (NSString *)workingDirectory
 {
 	if ([self.fileURL.path hasSuffix:@"/.git"])
 		return [self.fileURL.path substringToIndex:[self.fileURL.path length] - 5];

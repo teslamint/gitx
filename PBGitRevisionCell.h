@@ -7,10 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitGrapher.h"
-#import "PBGraphCellInfo.h"
-#import "PBGitHistoryController.h"
-#import "PBRefContextDelegate.h"
+
 
 @interface PBGitRevisionCell : NSActionCell {
 	PBGitCommit *objectValue;

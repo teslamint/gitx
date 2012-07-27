@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class PBGitCommit;
 
 
 @interface PBDiffWindowController : NSWindowController {

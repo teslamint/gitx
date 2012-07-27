@@ -7,10 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitRepository.h"
-#import "PBGitTree.h"
 #import "PBGitRefish.h"
-#import "PBGitSHA.h"
 
 
 extern NSString * const kGitXCommitType;

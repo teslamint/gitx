@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitGraphLine.h"
+
 
 @interface PBGraphCellInfo : NSObject
 {
@@ -18,12 +18,10 @@
 	char sign;	
 }
 
-@property(nonatomic, assign) struct PBGitGraphLine *lines;
-@property(nonatomic, assign) int nLines;
-@property(nonatomic, assign) int position, numColumns;
-@property(nonatomic, assign) char sign;
+- (id)initWithPosition:(int)p andLines:(struct PBGitGraphLine *)l;
 
-
-- (id)initWithPosition:(int) p andLines:(struct PBGitGraphLine *) l;
-
+@property (nonatomic, assign) struct PBGitGraphLine *lines;
+@property (nonatomic, assign) int nLines;
+@property (nonatomic, assign) int position, numColumns;
+@property (nonatomic, assign) char sign;
 @end

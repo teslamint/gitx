@@ -10,10 +10,14 @@
 #import "PBGitCommit.h"
 #import "PBGitLane.h"
 #import "PBGitGraphLine.h"
+#import "PBGitSHA.h"
 #import <list>
 #import "git/oid.h"
+#import "PBGraphCellInfo.h"
 
 using namespace std;
+
+
 
 @implementation PBGitGrapher
 

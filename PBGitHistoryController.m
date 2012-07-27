@@ -20,22 +20,27 @@
 #import "PBHistorySearchController.h"
 #define QLPreviewPanel NSClassFromString(@"QLPreviewPanel")
 #import "PBQLTextView.h"
-
+#import "PBGitHistoryList.h"
+#import "PBGitRevSpecifier.h"
+#import "PBGitWindowController.h"
+#import "PBGitCommit.h"
+#import "PBGitTree.h"
+#import "PBGitSHA.h"
+#import "PBGitRepository.h"
+#import "PBGitRef.h"
 
 #define kHistorySelectedDetailIndexKey @"PBHistorySelectedDetailIndex"
 #define kHistoryDetailViewIndex 0
 #define kHistoryTreeViewIndex 1
-
 #define kHistorySplitViewPositionDefault @"History SplitView Position"
 
 @interface PBGitHistoryController ()
-
-- (void) updateBranchFilterMatrix;
-- (void) restoreFileBrowserSelection;
-- (void) saveFileBrowserSelection;
+- (void)updateBranchFilterMatrix;
+- (void)restoreFileBrowserSelection;
+- (void)saveFileBrowserSelection;
 - (void)saveSplitViewPosition;
-
 @end
+
 
 
 @implementation PBGitHistoryController

@@ -7,13 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitBinary.h"
-#import "PBEasyPipe.h"
 
 @interface PBGitConfig : NSObject {
 	NSString *repositoryPath;
 }
-
 - init;
 - initWithRepositoryPath:(NSString *)path;
 @end

@@ -9,11 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PBSourceViewBadge : NSObject {
-
-}
-
+@interface PBSourceViewBadge : NSObject
 + (NSImage *) checkedOutBadgeForCell:(NSTextFieldCell *)cell;
 + (NSImage *) numericBadge:(NSInteger)number forCell:(NSTextFieldCell *)cell;
-
 @end

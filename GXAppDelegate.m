@@ -10,7 +10,7 @@
 #import "PBGitRepository.h"
 #import "PBGitRevisionCell.h"
 #import "PBGitWindowController.h"
-#import "PBRepositoryDocumentController.h"
+#import "GXDocumentController.h"
 #import "PBServicesController.h"
 #import "PBGitXProtocol.h"
 #import "PBNSURLPathUserDefaultsTransfomer.h"
@@ -64,7 +64,7 @@
 
 	[self registerServices];
 
-    NSArray *launchedDocuments = [[PBRepositoryDocumentController sharedDocumentController] documents];
+    NSArray *launchedDocuments = [[GXDocumentController sharedDocumentController] documents];
 
     // to bring the launched documents to the front
     for (PBGitRepository *document in launchedDocuments)
@@ -174,7 +174,7 @@
 	[PBGitDefaults removePreviousDocumentPaths];
 
 	if ([PBGitDefaults openPreviousDocumentsOnLaunch]) {
-		NSArray *documents = [[PBRepositoryDocumentController sharedDocumentController] documents];
+		NSArray *documents = [[GXDocumentController sharedDocumentController] documents];
 		if ([documents count] > 0) {
 			NSMutableArray *paths = [NSMutableArray array];
 			for (PBGitRepository *repository in documents)

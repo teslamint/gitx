@@ -11,7 +11,13 @@
 #import "PBRefMenuItem.h"
 #import "PBGitDefaults.h"
 #import "PBDiffWindowController.h"
-
+#import "PBGitRevSpecifier.h"
+#import "PBGitWindowController.h"
+#import "PBGitHistoryController.h"
+#import "PBCommitList.h"
+#import "PBGitRef.h"
+#import "PBGitCommit.h"
+#import "PBGitRepository.h"
 
 #define kDialogAcceptDroppedRef @"Accept Dropped Ref"
 #define kDialogConfirmPush @"Confirm Push"

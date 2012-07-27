@@ -10,12 +10,16 @@
 #import "PBChangedFile.h"
 #import "PBGitRepository.h"
 #import "PBGitIndex.h"
-
+#import "PBGitCommitController.h"
+#import "PBChangedFile.h"
+#import "PBGitWindowController.h"
 #define FileChangesTableViewType @"GitFileChangedType"
 
 @interface PBGitIndexController ()
 - (void)discardChangesForFiles:(NSArray *)files force:(BOOL)force;
 @end
+
+
 
 @implementation PBGitIndexController
 

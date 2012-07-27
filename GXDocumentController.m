@@ -6,7 +6,7 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "PBRepositoryDocumentController.h"
+#import "GXDocumentController.h"
 #import "PBGitDefaults.h"
 #import "PBGitRepository.h"
 #import "PBGitWindowController.h"
@@ -19,7 +19,7 @@
 //FIXME this code is shit. It was written by a noob. Make it proper.
 
 
-@implementation PBRepositoryDocumentController
+@implementation GXDocumentController
 
 - (NSInteger)runModalOpenPanel:(NSOpenPanel *)openPanel forTypes:(NSArray *)extensions {
     // configure the open panel to only allow selection of directories

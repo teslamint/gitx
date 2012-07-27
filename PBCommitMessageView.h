@@ -8,8 +8,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PBCommitMessageView : NSTextView {
-
-}
-
+@interface PBCommitMessageView : NSTextView
 @end

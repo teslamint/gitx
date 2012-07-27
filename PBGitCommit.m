@@ -8,7 +8,10 @@
 
 #import "PBGitCommit.h"
 #import "PBGitSHA.h"
+#import "PBGitRef.h"
+#import "PBGitTree.h"
 #import "PBGitDefaults.h"
+#import "PBGitRepository.h"
 
 
 NSString * const kGitXCommitType = @"commit";

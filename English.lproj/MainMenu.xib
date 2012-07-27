@@ -786,7 +786,7 @@
 				<string key="NSClassName">GXAppDelegate</string>
 			</object>
 			<object class="NSCustomObject" id="189246969">
-				<string key="NSClassName">PBRepositoryDocumentController</string>
+				<string key="NSClassName">GXDocumentController</string>
 			</object>
 			<object class="NSUserDefaultsController" id="391227374">
 				<bool key="NSSharedInstance">YES</bool>

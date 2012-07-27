@@ -11,7 +11,11 @@
 #import "PBGitHistoryController.h"
 #import "PBGitRepository.h"
 #import "PBGitDefaults.h"
+#import "PBEasyPipe.h"
+#import "PBGitBinary.h"
+#import "PBGitCommit.h"
 #import <QuartzCore/CoreAnimation.h>
+#import "PBGitSHA.h"
 
 
 @interface PBHistorySearchController ()

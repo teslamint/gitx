@@ -8,8 +8,18 @@
 
 #import "PBGitRevisionCell.h"
 #import "PBGitRef.h"
+#import "PBGitRevSpecifier.h"
 #import "RoundedRectangle.h"
 #import "GitXTextFieldCell.h"
+#import "PBGitRepository.h"
+#import "PBGitSHA.h"
+#import "PBGitCommit.h"
+#import "PBGitGrapher.h"
+#import "PBGraphCellInfo.h"
+#import "PBGitHistoryController.h"
+#import "PBRefContextDelegate.h"
+#import "PBGitGraphLine.h"
+
 
 @implementation PBGitRevisionCell
 

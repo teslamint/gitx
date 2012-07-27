@@ -7,13 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-#import "PBGitCommitController.h"
 #import "PBGitXMessageSheet.h"
 
 
-@interface PBCommitHookFailedSheet : PBGitXMessageSheet
-{
+@interface PBCommitHookFailedSheet : PBGitXMessageSheet {
     PBGitCommitController *commitController;
 }
 

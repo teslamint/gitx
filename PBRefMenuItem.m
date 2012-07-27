@@ -6,7 +6,13 @@
 //  Copyright 2008 Pieter de Bie. All rights reserved.
 //
 
+#import "PBGitCommit.h"
+#import "PBGitRepository.h"
+#import "PBGitRef.h"
+#import "PBGitRevSpecifier.h"
+#import "PBGitSHA.h"
 #import "PBRefMenuItem.h"
+
 
 
 @implementation PBRefMenuItem

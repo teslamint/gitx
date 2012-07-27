@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitRepository.h"
-#import "PBGitWindowController.h"
+
 
 @interface PBViewController : NSViewController {
 	PBGitRepository *repository;

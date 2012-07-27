@@ -7,17 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitCommit.h"
-#import "PBGitHistoryController.h"
-#import "PBRefContextDelegate.h"
 #import "PBWebController.h"
-@class PBGitSHA;
 
 
 @interface PBWebHistoryController : PBWebController {
 	IBOutlet PBGitHistoryController* historyController;
 	IBOutlet id<PBRefContextDelegate> contextMenuDelegate;
-
 	PBGitSHA *currentSha;
 	NSString *diff;
 }

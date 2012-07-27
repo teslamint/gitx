@@ -10,9 +10,12 @@
 #import "PBGitRevisionCell.h"
 #import "PBWebHistoryController.h"
 #import "PBHistorySearchController.h"
+#import "PBGitHistoryController.h"
+#import <WebKit/WebKit.h>
+
+
 
 @implementation PBCommitList
-
 @synthesize mouseDownPoint;
 @synthesize useAdjustScroll;
 

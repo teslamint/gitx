@@ -15,14 +15,11 @@
 	NSString *string;
 }
 
-
 + (PBGitSHA *)shaWithOID:(git_oid)oid;
 + (PBGitSHA *)shaWithString:(NSString *)shaString;
 + (PBGitSHA *)shaWithCString:(const char *)shaCString;
-
 - (BOOL)isEqualToOID:(git_oid)other_oid;
 
 @property (readonly) git_oid oid;
 @property (readonly) NSString *string;
-
 @end

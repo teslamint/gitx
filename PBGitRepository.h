@@ -7,37 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitHistoryList.h"
-#import "PBGitRevSpecifier.h"
-#import "PBGitConfig.h"
-#import "PBGitRefish.h"
 
-typedef enum branchFilterTypes {
+typedef enum PBGitXBranchFilterTypes {
 	kGitXAllBranchesFilter = 0,
 	kGitXLocalRemoteBranchesFilter,
 	kGitXSelectedBranchFilter
 } PBGitXBranchFilterType;
 
-static NSString * PBStringFromBranchFilterType(PBGitXBranchFilterType type) {
-    switch (type) {
-        case kGitXAllBranchesFilter:
-            return @"All";
-            break;
-        case kGitXLocalRemoteBranchesFilter:
-            return @"Local";
-            break;
-        case kGitXSelectedBranchFilter:
-            return @"Selected";
-            break;
-        default:
-            break;
-    }
-    return @"Not a branch filter type";
-}
 
-@class PBGitWindowController;
-@class PBGitCommit;
-@class PBGitSHA;
 
 @interface PBGitRepository : NSDocument {
 	PBGitHistoryList *revisionList;

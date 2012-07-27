@@ -7,17 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitRef.h"
-#import "PBGitCommit.h"
+
 
 @interface PBRefMenuItem : NSMenuItem {
 	id <PBGitRefish> refish;
+
 }
-
-@property (strong) id <PBGitRefish> refish;
-
 + (PBRefMenuItem *) separatorItem;
 + (NSArray *) defaultMenuItemsForRef:(PBGitRef *)ref inRepository:(PBGitRepository *)repo target:(id)target;
 + (NSArray *) defaultMenuItemsForCommit:(PBGitCommit *)commit target:(id)target;
-
+@property (strong) id <PBGitRefish> refish;
 @end

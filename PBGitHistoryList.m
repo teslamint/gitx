@@ -9,9 +9,11 @@
 #import "PBGitHistoryList.h"
 #import "PBGitRepository.h"
 #import "PBGitRevList.h"
+#import "PBGitRevSpecifier.h"
 #import "PBGitGrapher.h"
 #import "PBGitHistoryGrapher.h"
 #import "PBGitSHA.h"
+#import "PBGitRef.h"
 
 
 

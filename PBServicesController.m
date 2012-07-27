@@ -7,8 +7,9 @@
 //
 
 #import "PBServicesController.h"
-#import "PBRepositoryDocumentController.h"
+#import "GXDocumentController.h"
 #import "PBGitRepository.h"
+
 
 @implementation PBServicesController
 

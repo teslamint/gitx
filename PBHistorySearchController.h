@@ -17,7 +17,6 @@ typedef enum historySearchModes {
 	kGitXMaxSearchMode    // always keep this item last
 } PBHistorySearchMode;
 
-@class PBGitHistoryController;
 
 
 @interface PBHistorySearchController : NSObject {

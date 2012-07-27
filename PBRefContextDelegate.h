@@ -6,11 +6,6 @@
 //  Copyright 2008 Pieter de Bie. All rights reserved.
 //
 
-
-@class PBGitRef;
-@class PBGitCommit;
-
-
 @protocol PBRefContextDelegate
 - (NSArray *) menuItemsForRef:(PBGitRef *)ref;
 - (NSArray *) menuItemsForCommit:(PBGitCommit *)commit;

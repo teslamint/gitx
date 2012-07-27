@@ -7,13 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitHistoryController.h"
-#import "PBCommitList.h"
-#import "PBGitRef.h"
-#import "PBGitCommit.h"
 #import "PBRefContextDelegate.h"
 
-@class PBRefMenuItem;
 
 @interface PBRefController : NSObject <PBRefContextDelegate> {
 	IBOutlet PBGitHistoryController *historyController;

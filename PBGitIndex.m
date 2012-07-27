@@ -27,8 +27,9 @@ NSString *PBGitIndexFinishedCommit = @"PBGitIndexFinishedCommit";
 NSString *PBGitIndexAmendMessageAvailable = @"PBGitIndexAmendMessageAvailable";
 NSString *PBGitIndexOperationFailed = @"PBGitIndexOperationFailed";
 
-@interface PBGitIndex (IndexRefreshMethods)
 
+
+@interface PBGitIndex (IndexRefreshMethods)
 - (NSArray *)linesFromNotification:(NSNotification *)notification;
 - (NSMutableDictionary *)dictionaryForLines:(NSArray *)lines;
 - (void)addFilesFromDictionary:(NSMutableDictionary *)dictionary staged:(BOOL)staged tracked:(BOOL)tracked;
@@ -39,11 +40,11 @@ NSString *PBGitIndexOperationFailed = @"PBGitIndexOperationFailed";
 - (void)readOtherFiles:(NSNotification *)notification;
 - (void)readUnstagedFiles:(NSNotification *)notification;
 - (void)readStagedFiles:(NSNotification *)notification;
-
 @end
 
-@interface PBGitIndex ()
 
+
+@interface PBGitIndex ()
 // Returns the tree to compare the index to, based
 // on whether amend is set or not.
 - (NSString *) parentTree;
@@ -54,8 +55,9 @@ NSString *PBGitIndexOperationFailed = @"PBGitIndexOperationFailed";
 - (void)postOperationFailed:(NSString *)description;
 @end
 
-@implementation PBGitIndex
 
+
+@implementation PBGitIndex
 @synthesize amend;
 
 - (id)initWithRepository:(PBGitRepository *)theRepository workingDirectory:(NSURL *)theWorkingDirectory

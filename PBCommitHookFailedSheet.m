@@ -8,6 +8,7 @@
 
 #import "PBCommitHookFailedSheet.h"
 #import "PBGitWindowController.h"
+#import "PBGitCommitController.h"
 
 
 @implementation PBCommitHookFailedSheet

@@ -8,10 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PBWebController.h"
-#import "PBGitCommitController.h"
-#import "PBChangedFile.h"
 
-@class PBGitIndexController;
 
 @interface PBWebChangesController : PBWebController {
 	IBOutlet NSArrayController *unstagedFilesController;

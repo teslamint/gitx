@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "PBViewController.h"
 
-@class PBGitIndexController, PBIconAndTextCell, PBWebChangesController, PBGitIndex;
-@class PBNiceSplitView;
 
 @interface PBGitCommitController : PBViewController {
 	// This might have to transfer over to the PBGitRepository

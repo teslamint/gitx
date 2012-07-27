@@ -10,7 +10,8 @@
 #import "PBGitRepository.h"
 #import "PBGitXProtocol.h"
 #import "PBGitDefaults.h"
-#include <SystemConfiguration/SCNetworkReachability.h>
+#import <SystemConfiguration/SCNetworkReachability.h>
+#import <WebKit/WebKit.h>
 
 @interface PBWebController()
 - (void)preferencesChangedWithNotification:(NSNotification *)theNotification;

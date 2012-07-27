@@ -8,7 +8,14 @@
 
 #import "PBWebHistoryController.h"
 #import "PBGitDefaults.h"
+#import "PBGitRevSpecifier.h"
 #import "PBGitSHA.h"
+#import <WebKit/WebKit.h>
+#import "PBGitCommit.h"
+#import "PBGitHistoryController.h"
+#import "PBRefContextDelegate.h"
+#import "PBGitRepository.h"
+#import "PBGitRef.h"
 
 
 

@@ -7,12 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class PBGitRepository;
-@class PBGitRevSpecifier;
-@class PBGitRef;
-@class PBGitRevList;
-@class PBGitHistoryGrapher;
-@class PBGitSHA;
 
 
 @interface PBGitHistoryList : NSObject {
@@ -39,9 +33,7 @@
 - (void)forceUpdate;
 - (void)updateHistory;
 - (void)cleanup;
-
 - (void)updateCommitsFromGrapher:(NSDictionary *)commitData;
-
 
 @property (strong) PBGitRevList *projectRevList;
 @property (strong) NSMutableArray *commits;

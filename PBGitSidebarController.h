@@ -9,9 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "PBViewController.h"
 
-@class PBSourceViewItem;
-@class PBGitHistoryController;
-@class PBGitCommitController;
 
 @interface PBGitSidebarController : PBViewController {
 	IBOutlet NSWindow *window;

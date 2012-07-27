@@ -7,10 +7,11 @@
 //
 
 #import "PBViewController.h"
+#import "PBGitRepository.h"
+#import "PBGitWindowController.h"
 
 
 @implementation PBViewController
-
 @synthesize repository;
 @synthesize status;
 @synthesize isBusy;

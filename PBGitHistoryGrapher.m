@@ -6,8 +6,9 @@
 //  Copyright 2010 Nathan Kinsinger. All rights reserved.
 //
 
-#import "PBGitHistoryGrapher.h"
+#import "PBGitCommit.h"
 #import "PBGitGrapher.h"
+#import "PBGitHistoryGrapher.h"
 #import "PBGitSHA.h"
 
 

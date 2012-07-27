@@ -7,17 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <WebKit/WebView.h>
-#import "PBGitHistoryController.h"
 
-@class PBWebHistoryController;
 
 @interface PBCommitList : NSTableView {
 	IBOutlet WebView* webView;
 	IBOutlet PBWebHistoryController *webController;
 	IBOutlet PBGitHistoryController *controller;
 	IBOutlet PBHistorySearchController *searchController;
-
     BOOL useAdjustScroll;
 	NSPoint mouseDownPoint;
 }

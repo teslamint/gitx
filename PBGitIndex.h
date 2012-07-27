@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PBGitRepository;
-@class PBChangedFile;
 
 /*
  * Notifications this class will send

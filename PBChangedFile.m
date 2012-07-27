@@ -8,9 +8,10 @@
 
 #import "PBChangedFile.h"
 #import "PBEasyPipe.h"
+#import "PBGitRepository.h"
+
 
 @implementation PBChangedFile
-
 @synthesize path, status, hasStagedChanges, hasUnstagedChanges, commitBlobSHA, commitBlobMode;
 
 - (id) initWithPath:(NSString *)p

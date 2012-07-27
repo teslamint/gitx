@@ -8,5 +8,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PBRepositoryDocumentController : NSDocumentController
+@interface GXDocumentController : NSDocumentController
 @end

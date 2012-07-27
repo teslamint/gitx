@@ -6,14 +6,16 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "PBGitTree.h"
-#import "PBGitCommit.h"
-#import "NSFileHandleExt.h"
-#import "PBEasyPipe.h"
 #import "PBEasyFS.h"
+#import "PBEasyPipe.h"
+#import "PBGitCommit.h"
+#import "PBGitRepository.h"
+#import "PBGitTree.h"
+#import "NSFileHandleExt.h"
+
+
 
 @implementation PBGitTree
-
 @synthesize sha, path, repository, leaf, parent;
 
 + (PBGitTree*) rootForCommit:(id) commit

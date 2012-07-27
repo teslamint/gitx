@@ -30,7 +30,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		911111E20E58BD5A00BF76B4 /* RepositoryWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 911111E00E58BD5A00BF76B4 /* RepositoryWindow.xib */; };
-		911111F80E594F3F00BF76B4 /* PBRepositoryDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911111F70E594F3F00BF76B4 /* PBRepositoryDocumentController.m */; };
+		911111F80E594F3F00BF76B4 /* GXDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 911111F70E594F3F00BF76B4 /* GXDocumentController.m */; };
 		911112370E5A097800BF76B4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911112360E5A097800BF76B4 /* Security.framework */; };
 		913D5E4D0E55644E00CECEA2 /* gitx-cli.m in Sources */ = {isa = PBXBuildFile; fileRef = 913D5E440E55640C00CECEA2 /* gitx-cli.m */; };
 		913D5E500E55645900CECEA2 /* gitx in Resources */ = {isa = PBXBuildFile; fileRef = 913D5E490E55644600CECEA2 /* gitx */; };
@@ -194,8 +194,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* GitX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		911111E10E58BD5A00BF76B4 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RepositoryWindow.xib; sourceTree = "<group>"; };
-		911111F60E594F3F00BF76B4 /* PBRepositoryDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRepositoryDocumentController.h; sourceTree = "<group>"; };
-		911111F70E594F3F00BF76B4 /* PBRepositoryDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRepositoryDocumentController.m; sourceTree = "<group>"; };
+		911111F60E594F3F00BF76B4 /* GXDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXDocumentController.h; sourceTree = "<group>"; };
+		911111F70E594F3F00BF76B4 /* GXDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXDocumentController.m; sourceTree = "<group>"; };
 		911112360E5A097800BF76B4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		913D5E440E55640C00CECEA2 /* gitx-cli.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "gitx-cli.m"; sourceTree = "<group>"; };
 		913D5E490E55644600CECEA2 /* gitx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gitx; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -544,6 +544,8 @@
 			children = (
 				77C8280B06725ACE000B614F /* GXAppDelegate.h */,
 				77C8280C06725ACE000B614F /* GXAppDelegate.m */,
+				911111F60E594F3F00BF76B4 /* GXDocumentController.h */,
+				911111F70E594F3F00BF76B4 /* GXDocumentController.m */,
 				F57CC43E0E05E472000472E2 /* Aux */,
 				F57CC3850E05DDC1000472E2 /* Controllers */,
 				F56174540E05887E001DCD79 /* Git */,
@@ -641,8 +643,6 @@
 				93CB42C10EAB7B2200530609 /* PBGitDefaults.m */,
 				F57CC43F0E05E496000472E2 /* PBGitWindowController.h */,
 				F57CC4400E05E496000472E2 /* PBGitWindowController.m */,
-				911111F60E594F3F00BF76B4 /* PBRepositoryDocumentController.h */,
-				911111F70E594F3F00BF76B4 /* PBRepositoryDocumentController.m */,
 				F5E926040E8827D300056E75 /* PBViewController.h */,
 				F5E926050E8827D300056E75 /* PBViewController.m */,
 				F5EF8C8C0E9D4A5D0050906B /* PBWebController.h */,
@@ -721,8 +721,8 @@
 			children = (
 				F5E424140EA3E4E10046E362 /* PBDiffWindowController.h */,
 				F5E424130EA3E4E10046E362 /* PBDiffWindowController.m */,
-				F5E424160EA3E4EB0046E362 /* PBWebDiffController.m */,
 				F5E424170EA3E4EB0046E362 /* PBWebDiffController.h */,
+				F5E424160EA3E4EB0046E362 /* PBWebDiffController.m */,
 			);
 			name = Diff;
 			sourceTree = "<group>";
@@ -979,7 +979,7 @@
 				F50FE0E30E07BE9600854FCD /* PBGitRevisionCell.m in Sources */,
 				F5FF4E180E0829C20006317A /* PBGitRevList.mm in Sources */,
 				F5FF4E7A0E082E440006317A /* PBGitGrapher.mm in Sources */,
-				911111F80E594F3F00BF76B4 /* PBRepositoryDocumentController.m in Sources */,
+				911111F80E594F3F00BF76B4 /* GXDocumentController.m in Sources */,
 				F56CC7320E65E0E5004307B4 /* PBGraphCellInfo.m in Sources */,
 				F5C6F68D0E65FF9300478D97 /* PBGitLane.mm in Sources */,
 				F5C007750E731B48007B84B2 /* PBGitRef.m in Sources */,

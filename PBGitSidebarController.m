@@ -15,12 +15,16 @@
 #import "NSOutlineViewExt.h"
 #import "PBGitDefaults.h"
 #import "PBHistorySearchController.h"
+#import "PBGitWindowController.h"
+#import "PBGitRepository.h"
+#import "PBGitRef.h"
+
+
 
 @interface PBGitSidebarController () <NSOutlineViewDelegate>
-
 - (void)populateList;
 - (void)addRevSpec:(PBGitRevSpecifier *)revSpec;
-- (PBSourceViewItem *) itemForRev:(PBGitRevSpecifier *)rev;
+- (PBSourceViewItem *)itemForRev:(PBGitRevSpecifier *)rev;
 - (void) removeRevSpec:(PBGitRevSpecifier *)rev;
 - (void) updateActionMenu;
 - (void) updateRemoteControls;

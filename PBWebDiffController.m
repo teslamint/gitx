@@ -6,39 +6,35 @@
 //  Copyright 2008 Pieter de Bie. All rights reserved.
 //
 
+#import "PBDiffWindowController.h"
 #import "PBWebDiffController.h"
+#import <WebKit/WebKit.h>
 
 
 @implementation PBWebDiffController
 
-- (void) awakeFromNib
-{
+- (void)awakeFromNib {
 	startFile = @"diff";
 	[super awakeFromNib];
 	[diffController addObserver:self forKeyPath:@"diff" options:0 context:@"ChangedDiff"];
 }
 
-- (void)closeView
-{
+- (void)closeView {
 	[diffController removeObserver:self forKeyPath:@"diff"];
-
 	[super closeView];
 }
 
 
-- (void) didLoad
-{
+- (void)didLoad {
 	[self showDiff:diffController.diff];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(NSString *)context {
     if ([context isEqualToString: @"ChangedDiff"])
 		[self showDiff:diffController.diff];
 }
 
-- (void) showDiff: (NSString *) diff
-{
+- (void)showDiff:(NSString *)diff {
 	if (diff == nil || !finishedLoading)
 		return;
 

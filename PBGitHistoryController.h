@@ -7,19 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PBGitCommit.h"
-#import "PBGitTree.h"
 #import "PBViewController.h"
 
-@class PBGitSidebarController;
-@class PBWebHistoryController;
-@class PBGitGradientBarView;
-@class PBRefController;
-@class QLPreviewPanel;
-@class PBCommitList;
-@class PBGitSHA;
 
-@class PBHistorySearchController;
 
 @interface PBGitHistoryController : PBViewController {
 	IBOutlet PBRefController *__unsafe_unretained refController;

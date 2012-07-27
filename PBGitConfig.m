@@ -7,6 +7,8 @@
 //
 
 #import "PBGitConfig.h"
+#import "PBGitBinary.h"
+#import "PBEasyPipe.h"
 
 
 @implementation PBGitConfig

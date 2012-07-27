@@ -9,7 +9,8 @@
 #import "PBWebChangesController.h"
 #import "PBGitIndexController.h"
 #import "PBGitIndex.h"
-
+#import <WebKit/WebKit.h>
+#import "PBGitCommitController.h"
 
 
 @implementation PBWebChangesController

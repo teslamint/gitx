@@ -6,10 +6,11 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "PBGitBinary.h"
-#import "PBEasyPipe.h"
-#import "GitXScriptingConstants.h"
 #import "GitX.h"
+#import "GitXScriptingConstants.h"
+#import "PBEasyPipe.h"
+#import "PBGitBinary.h"
+@class PBGitHistoryController;
 #import "PBHistorySearchController.h"
 
 

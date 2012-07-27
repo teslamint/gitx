@@ -7,9 +7,6 @@
 //
 
 @interface PBGitDefaults : NSObject
-{
-
-}
 
 + (int) commitMessageViewVerticalLineLength;
 + (BOOL) commitMessageViewHasVerticalLine;

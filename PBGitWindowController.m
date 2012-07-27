@@ -12,6 +12,7 @@
 #import "PBGitSidebarController.h"
 #import "PBGitWindowController.h"
 #import "PBGitXMessageSheet.h"
+#import "PBGitRepository.h"
 #import <ScriptingBridge/ScriptingBridge.h>
 
 @interface TerminalApplication : SBApplication

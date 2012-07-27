@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PBGitRepository;
-@class PBGitRevSpecifier;
 
 @interface PBGitRevList : NSObject {
 	NSMutableArray *commits;
@@ -23,8 +21,8 @@
 	BOOL resetCommits;
 }
 
-- (id) initWithRepository:(PBGitRepository *)repo rev:(PBGitRevSpecifier *)rev shouldGraph:(BOOL)graph;
-- (void) loadRevisons;
+- (id)initWithRepository:(PBGitRepository *)repo rev:(PBGitRevSpecifier *)rev shouldGraph:(BOOL)graph;
+- (void)loadRevisons;
 - (void)cancel;
 
 @property (strong) NSMutableArray *commits;

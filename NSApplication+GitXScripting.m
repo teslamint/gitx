@@ -9,7 +9,7 @@
 #import "NSApplication+GitXScripting.h"
 #import "GitXScriptingConstants.h"
 #import "PBDiffWindowController.h"
-#import "PBRepositoryDocumentController.h"
+#import "GXDocumentController.h"
 
 
 @implementation NSApplication (GitXScripting)
