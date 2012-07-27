@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface ApplicationController : NSObject {
+@interface GXAppDelegate : NSObject <NSApplicationDelegate> {
 	IBOutlet NSWindow *window;
 	IBOutlet id firstResponder;
 }

@@ -54,6 +54,7 @@
 										<string key="NSFrameSize">{153, 354}</string>
 										<reference key="NSSuperview" ref="973377808"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="636071848"/>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSControlAllowsExpansionToolTips">YES</bool>
@@ -175,6 +176,7 @@
 								<string key="NSFrame">{{137, 1}, {15, 338}}</string>
 								<reference key="NSSuperview" ref="631607481"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="631607481"/>
 								<string key="NSAction">_doScroller:</string>
@@ -186,6 +188,7 @@
 								<string key="NSFrame">{{-100, -100}, {196, 15}}</string>
 								<reference key="NSSuperview" ref="631607481"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="973377808"/>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="631607481"/>
@@ -196,7 +199,7 @@
 						<string key="NSFrameSize">{153, 354}</string>
 						<reference key="NSSuperview" ref="694945622"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="973377808"/>
+						<reference key="NSNextKeyView" ref="46429660"/>
 						<int key="NSsFlags">133648</int>
 						<reference key="NSVScroller" ref="636071848"/>
 						<reference key="NSHScroller" ref="46429660"/>
@@ -210,6 +213,7 @@
 				<string key="NSFrameSize">{153, 354}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="631607481"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 		</array>
@@ -350,17 +354,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">PBGitSidebarController</string>
 					<string key="superclassName">PBViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">fetchPullPushAction:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">fetchPullPushAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">fetchPullPushAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="actionButton">NSPopUpButton</string>
 						<string key="remoteControls">NSSegmentedControl</string>

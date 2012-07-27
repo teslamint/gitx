@@ -8,4 +8,5 @@ line git tool is great. However it is not ideal for:
 
 GitX is for those things. Nothing else. Nothing else at all.
 
-Install the command line tool "gitx" or you will not enjoy using gitx.
+Install the command line tool "gitx" (use the GitX Menu) or you will not enjoy
+using gitx.

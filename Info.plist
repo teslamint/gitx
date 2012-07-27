@@ -36,8 +36,6 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleGitVersion</key>
-	<string>GIT_VERSION</string>
 	<key>CFBundleIconFile</key>
 	<string>gitx.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -49,7 +47,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.9</string>
+	<string>0.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>NSAppleScriptEnabled</key>

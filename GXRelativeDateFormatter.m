@@ -1,21 +1,13 @@
-//
-//  GitXRelativeDateFormatter.m
-//  GitX
-//
-//  Created by Nathan Kinsinger on 9/1/10.
-//  Copyright 2010 Nathan Kinsinger. All rights reserved.
-//
+// Created by Nathan Kinsinger on 9/1/10.
+// Copyright 2010 Nathan Kinsinger. All rights reserved.
 
-#import "GitXRelativeDateFormatter.h"
-
-
+#import "GXRelativeDateFormatter.h"
 #define MINUTE 60
-#define HOUR   (60 * MINUTE)
-
+#define HOUR (60 * MINUTE)
 #define WEEK 7
 
 
-@implementation GitXRelativeDateFormatter
+@implementation GXRelativeDateFormatter
 
 - (NSString *)stringForObjectValue:(id)date
 {

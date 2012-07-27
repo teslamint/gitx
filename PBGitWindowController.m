@@ -6,17 +6,21 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "PBGitWindowController.h"
-#import "PBGitHistoryController.h"
-#import "PBGitCommitController.h"
-#import "Terminal.h"
 #import "PBCommitHookFailedSheet.h"
-#import "PBGitXMessageSheet.h"
+#import "PBGitCommitController.h"
+#import "PBGitHistoryController.h"
 #import "PBGitSidebarController.h"
+#import "PBGitWindowController.h"
+#import "PBGitXMessageSheet.h"
+#import <ScriptingBridge/ScriptingBridge.h>
+
+@interface TerminalApplication : SBApplication
+- (id)doScript:(NSString *)x in:(id)in_;
+@end
+
+
 
 @implementation PBGitWindowController
-
-
 @synthesize repository;
 
 - (id)initWithRepository:(PBGitRepository*)theRepository displayDefault:(BOOL)displayDefault {
@@ -25,15 +29,9 @@
 	return self;
 }
 
-- (void)windowWillClose:(NSNotification *)notification
-{
-	NSLog(@"Window will close!");
-
-	if (sidebarController)
-		[sidebarController closeView];
-
-	if (contentController)
-		[contentController removeObserver:self forKeyPath:@"status"];
+- (void)windowWillClose:(NSNotification *)notification {
+    [sidebarController closeView];
+    [contentController removeObserver:self forKeyPath:@"status"];
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -61,12 +59,6 @@
 
 	[[statusField cell] setBackgroundStyle:NSBackgroundStyleRaised];
 	[progressIndicator setUsesThreadedAnimation:YES];
-
-	NSImage *finderImage = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kFinderIcon)];
-	[finderItem setImage:finderImage];
-
-	NSImage *terminalImage = [[NSWorkspace sharedWorkspace] iconForFile:@"/Applications/Utilities/Terminal.app/"];
-	[terminalItem setImage:terminalImage];
 
 	[self showWindow:nil];
 }
@@ -139,28 +131,23 @@
 	[self showErrorSheet:error];
 }
 
-- (IBAction) revealInFinder:(id)sender
-{
+- (IBAction)revealInFinder:(id)sender {
 	[[NSWorkspace sharedWorkspace] openFile:[repository workingDirectory]];
 }
 
-- (IBAction) openInTerminal:(id)sender
-{
+- (IBAction)openInTerminal:(id)sender {
 	TerminalApplication *term = [SBApplication applicationWithBundleIdentifier: @"com.apple.Terminal"];
-	NSString *workingDirectory = [[repository workingDirectory] stringByAppendingString:@"/"];
-	NSString *cmd = [NSString stringWithFormat: @"cd \"%@\"; clear; echo '# Opened by GitX:'; git status", workingDirectory];
-	[term doScript: cmd in: nil];
-	[NSThread sleepForTimeInterval: 0.1];
+	[term doScript:[NSString stringWithFormat:@"cd \"%@\"; clear; echo '# Opened by GitX:'; git status",
+                    [[repository workingDirectory] stringByAppendingString:@"/"]] in:nil];
+	[NSThread sleepForTimeInterval:0.1];
 	[term activate];
 }
 
-- (IBAction) refresh:(id)sender
-{
+- (IBAction)refresh:(id)sender {
 	[contentController refresh:self];
 }
 
-- (void) updateStatus
-{
+- (void)updateStatus {
 	NSString *status = contentController.status;
 	BOOL isBusy = contentController.isBusy;
 

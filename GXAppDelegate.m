@@ -6,7 +6,7 @@
 //  Copyright __MyCompanyName__ 2008 . All rights reserved.
 //
 
-#import "ApplicationController.h"
+#import "GXAppDelegate.h"
 #import "PBGitRepository.h"
 #import "PBGitRevisionCell.h"
 #import "PBGitWindowController.h"
@@ -18,7 +18,7 @@
 
 
 
-@implementation ApplicationController
+@implementation GXAppDelegate
 
 - (id)init {
 #ifdef DEBUG_BUILD
