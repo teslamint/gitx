@@ -23,6 +23,7 @@
 	IBOutlet PBGitIndexController *indexController;
 	IBOutlet PBWebChangesController *webController;
 	IBOutlet NSSplitView *commitSplitView;
+	IBOutlet NSSplitView *stageSplitView;
 }
 
 @property(readonly) PBGitIndex *index;
