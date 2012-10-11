@@ -17,6 +17,8 @@
 
 
 #define kCommitSplitViewPositionDefault @"Commit SplitView Position"
+#define kStagetSplitViewLeftPositionDefault @"StagetSplitViewLeftPositionDefault"
+#define kStagetSplitViewRightPositionDefault @"StagetSplitViewRightPositionDefault"
 
 @interface PBGitCommitController ()
 - (void)refreshFinished:(NSNotification *)notification;
@@ -28,7 +30,7 @@
 - (void)amendCommit:(NSNotification *)notification;
 - (void)indexChanged:(NSNotification *)notification;
 - (void)indexOperationFailed:(NSNotification *)notification;
-- (void)saveCommitSplitViewPosition;
+- (void)saveSplitViewsPositions;
 @end
 
 @implementation PBGitCommitController
@@ -74,12 +76,12 @@
 	[unstagedFilesController setAutomaticallyRearrangesObjects:NO];
 
 	[commitSplitView setHidden:YES];
-	[self performSelector:@selector(restoreCommitSplitViewPositiion) withObject:nil afterDelay:0];
+	[self performSelector:@selector(restoreSplitViewPositions) withObject:nil afterDelay:0];
 }
 
 - (void)closeView
 {
-	[self saveCommitSplitViewPosition];
+	[self saveSplitViewsPositions];
 	[webController closeView];
 }
 
@@ -278,22 +280,42 @@
 }
 
 // NSSplitView does not save and restore the position of the splitView correctly so do it manually
-- (void)saveCommitSplitViewPosition
+- (void)saveSplitViewsPositions
 {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	float position = [[[commitSplitView subviews] objectAtIndex:0] frame].size.height;
-	[[NSUserDefaults standardUserDefaults] setFloat:position forKey:kCommitSplitViewPositionDefault];
+	[defaults setFloat:position forKey:kCommitSplitViewPositionDefault];
+	
+	float leftDividerPosition = CGRectGetWidth([stageSplitView.subviews[0] frame]);
+	[defaults setFloat:leftDividerPosition forKey:kStagetSplitViewLeftPositionDefault];
+	
+	float rightDividerPosition = CGRectGetWidth([stageSplitView.subviews[1] frame]);
+	[defaults setFloat:rightDividerPosition forKey:kStagetSplitViewRightPositionDefault];
+	
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 // make sure this happens after awakeFromNib
-- (void)restoreCommitSplitViewPositiion
-{
-	float position = [[NSUserDefaults standardUserDefaults] floatForKey:kCommitSplitViewPositionDefault];
+- (void)restoreSplitViewPositions {
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	float position = [defaults floatForKey:kCommitSplitViewPositionDefault];
 	if (position < 1.0)
 		position = [commitSplitView frame].size.height - 225;
 
 	[commitSplitView setPosition:position ofDividerAtIndex:0];
 	[commitSplitView setHidden:NO];
+	
+	float leftPosition = [defaults floatForKey:kStagetSplitViewLeftPositionDefault];
+	if (leftPosition > 1.0) {
+		[stageSplitView setPosition:leftPosition ofDividerAtIndex:0];
+	}
+	
+	float rightPosition = [defaults floatForKey:kStagetSplitViewRightPositionDefault];
+	if (rightPosition > 1.0) {
+		[stageSplitView setPosition:leftPosition + rightPosition ofDividerAtIndex:1];
+	}
 }
 
 @end
