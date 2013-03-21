@@ -509,6 +509,8 @@ NSString* PBGitRepositoryErrorDomain = @"GitXErrorDomain";
 {
 	if ([self.fileURL.path hasSuffix:@"/.git"])
 		return [self.fileURL.path substringToIndex:[self.fileURL.path length] - 5];
+    else if ([[self config] valueForKeyPath:@"core.worktree"])
+        return [self.fileURL.path stringByAppendingPathComponent:[[self config] valueForKeyPath:@"core.worktree"]];
 	else
         return self.fileURL.path; // probably submodule
 }
