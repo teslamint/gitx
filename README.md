@@ -10,3 +10,7 @@ GitX is for those things. Nothing else. Nothing else at all.
 
 Install the command line tool "gitx" (use the GitX Menu) or you will not enjoy
 using gitx.
+
+Download
+========
+Current (64bit 10.7+) binary download: http://db.tt/8T7UAAQm
